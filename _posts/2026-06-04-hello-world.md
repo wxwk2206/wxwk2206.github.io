@@ -1,8 +1,13 @@
 ---
 title: Hello World — 博客上线
 date: 2026-06-04 12:30:00 +0800
-categories: [博客, 技术]
-tags: [博客, 技术, GitHub Pages, Jekyll]
+categories:
+  - 博客
+  - 技术
+tags:
+  - 博客
+  - 技术
+  - Jekyll
 ---
 
 欢迎来到我的博客！这是这个站点的第一篇文章，也算是博客正式上线的「Hello World」。
