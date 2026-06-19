@@ -1,24 +1,22 @@
 {
   "main": {
-    "id": "b5a53fd6206552a4",
+    "id": "9e77bd0b40020a6b",
     "type": "split",
     "children": [
       {
-        "id": "d48f855b03ad092b",
+        "id": "97cc830631bd0638",
         "type": "tabs",
         "children": [
           {
-            "id": "23aa86b1b144f8ae",
+            "id": "6f2c58ab0b9aab3e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "2026-06-10-C语言语法基础.md",
-                "mode": "source",
-                "source": false
+                "file": "assets/img/avatar.jpg"
               },
-              "icon": "lucide-file",
-              "title": "2026-06-10-C语言语法基础"
+              "icon": "lucide-image",
+              "title": "avatar"
             }
           }
         ]
@@ -27,15 +25,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "15029d3202f7a622",
+    "id": "82ffe67b78182797",
     "type": "split",
     "children": [
       {
-        "id": "c58956f18367b489",
+        "id": "0fd65d8d219c7a6c",
         "type": "tabs",
         "children": [
           {
-            "id": "9954634408c7a363",
+            "id": "03d8f5a87339b829",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +46,7 @@
             }
           },
           {
-            "id": "786d0930dd51066f",
+            "id": "51b00062f6f51aa3",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +63,7 @@
             }
           },
           {
-            "id": "3a83c875277110e9",
+            "id": "8e51f62c50e09e05",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +79,20 @@
     "width": 300
   },
   "right": {
-    "id": "0a8d687fb7c300f6",
+    "id": "0fb7b6fd09f425a7",
     "type": "split",
     "children": [
       {
-        "id": "6a85650e75723fe7",
+        "id": "1af8fb5db2bf4146",
         "type": "tabs",
         "children": [
           {
-            "id": "cdb1d10845d49719",
+            "id": "2d514096fa3f65a1",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2026-06-04-hello-world.md",
+                "file": "assets/img/avatar.jpg",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +102,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2026-06-04-hello-world 的反向链接列表"
+              "title": "avatar 的反向链接列表"
             }
           },
           {
-            "id": "e48deaee3c48c605",
+            "id": "941f01028852e973",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2026-06-04-hello-world.md",
+                "file": "assets/img/avatar.jpg",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2026-06-04-hello-world 的出链列表"
+              "title": "avatar 的出链列表"
             }
           },
           {
-            "id": "09aa0547560580ed",
+            "id": "4a630cc5f53ee335",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +135,7 @@
             }
           },
           {
-            "id": "ac71fceec1a25257",
+            "id": "511abc7953fe8856",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,26 +149,26 @@
             }
           },
           {
-            "id": "7b58301d0378f1a1",
+            "id": "7c90e191f54772bb",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "2026-06-04-hello-world.md",
+                "file": "assets/img/avatar.jpg",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026-06-04-hello-world 的大纲"
+              "title": "avatar 的大纲"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -183,14 +181,12 @@
       "bases:新建数据库": false
     }
   },
-  "active": "23aa86b1b144f8ae",
+  "active": "6f2c58ab0b9aab3e",
   "lastOpenFiles": [
-    "模板.md",
-    "2026-06-10-C语言语法基础.md",
-    "2026-06-04-hello-world.md",
-    "属性 1.md",
-    "未命名1",
-    "未命名.canvas",
-    "01.C语言语法基础.md"
+    "README.md",
+    "_tabs/archives.md",
+    "_tabs/categories.md",
+    "_tabs/tags.md",
+    "_tabs/about.md"
   ]
 }
