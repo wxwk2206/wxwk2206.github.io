@@ -212,6 +212,7 @@ exclude:
   - purgecss.js
   - "*.config.js"
   - "package*.json"
+  - design-preview.html  # ⭐ 设计预览文件，不参与站点构建
 
 jekyll-archives:
   enabled: [categories, tags]
