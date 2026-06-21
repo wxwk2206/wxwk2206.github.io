@@ -26,6 +26,9 @@ package-lock.json
 _sass/vendors
 assets/js/dist
 
+# Windows reserved device name (side effect of 2>nul in bash)
+nul
+
 # WorkBuddy
 .codebuddy/
 .workbuddy/
