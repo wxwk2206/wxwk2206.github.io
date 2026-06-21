@@ -1,0 +1,81 @@
+---
+layout: default
+---
+
+<!-- ============================================================
+     首页自定义布局（my-grill-me 访谈落地）
+     继承 Chirpy default：自动获得 sidebar / topbar / footer / head
+     仅覆写 content 区：Hero + Liquid 文章循环（B1+B1a 决策）
+     ============================================================ -->
+
+<!-- ⭐ Hero 区 -->
+<section class="cx-hero">
+  <p class="cx-hero-greeting">Hello, World.</p>
+  <h1 class="cx-hero-title">
+    安全研究 <em>&amp;</em> 技术笔记
+  </h1>
+  <p class="cx-hero-desc">
+    一个安全研究者的数字花园。记录 Web 安全攻防、漏洞挖掘、
+    代码审计与编程学习的思考与沉淀。
+  </p>
+  <div class="cx-hero-tags">
+    <span class="cx-hero-tag">Web 安全</span>
+    <span class="cx-hero-tag">代码审计</span>
+    <span class="cx-hero-tag">Java</span>
+    <span class="cx-hero-tag">C</span>
+    <span class="cx-hero-tag">漏洞挖掘</span>
+    <span class="cx-hero-tag">SRC</span>
+    <span class="cx-hero-tag">移动安全</span>
+  </div>
+</section>
+
+<!-- ⭐ 分隔线 -->
+<div class="cx-divider"><hr></div>
+
+<!-- ⭐ 文章列表区（B1: Liquid 循环 site.posts + B1a: post.excerpt 自动摘要） -->
+<section class="cx-posts">
+  <h2 class="cx-section-label">最新文章</h2>
+
+  <ul class="cx-post-list">
+    {% for post in paginator.posts limit: 5 %}
+      <li class="cx-post-item">
+        <div class="cx-post-meta">
+          <time class="cx-post-date" datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: '%Y-%m-%d' }}
+          </time>
+          {% if post.categories.size > 0 %}
+            <span class="cx-post-categories">
+              {% for category in post.categories %}
+                <span class="cx-post-category">{{ category }}</span>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </div>
+
+        <a href="{{ post.url | relative_url }}">
+          <h3 class="cx-post-title">{{ post.title }}</h3>
+        </a>
+
+        <p class="cx-post-excerpt">
+          {% if post.excerpt and post.excerpt != '' %}
+            {{ post.excerpt | strip_html | truncatewords: 50 }}
+          {% else %}
+            {{ post.content | strip_html | truncatewords: 50 }}
+          {% endif %}
+        </p>
+
+        {% if post.tags.size > 0 %}
+          <div class="cx-post-tags">
+            {% for tag in post.tags %}
+              <a href="{{ tag | slugify | prepend: '/tags/' | append: '/' | relative_url }}" class="cx-post-tag">{{ tag }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="cx-view-all">
+    <a href="{{ '/archives/' | relative_url }}">浏览全部文章</a>
+  </div>
+</section>
