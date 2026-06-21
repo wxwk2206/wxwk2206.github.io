@@ -1,0 +1,7 @@
+<!-- ⭐ 缓存控制：强制浏览器每次请求最新页面 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+<!-- ⭐ 构建时间戳：方便排查是否加载了最新版本 -->
+<meta name="build-time" content="{{ site.time | date: '%Y-%m-%d %H:%M:%S %Z' }}">
