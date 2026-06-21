@@ -1,0 +1,266 @@
+/* ============================================================
+   custom.css — 首页自定义样式（v5.3 平衡版）
+   完全独立于 SCSS 编译，通过 <link> 直接引入
+   决策来源：my-grill-me 访谈（2026-06-21）
+   ============================================================ */
+
+/* ── 字体声明：local 优先 + 系统 fallback ── */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Geist'), local('Geist Variable');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: local('JetBrains Mono'), local('JetBrainsMono-Regular');
+}
+
+/* ── Design Tokens ── */
+:root {
+  --cx-accent: oklch(55% 0.15 162);
+  --cx-accent-muted: oklch(50% 0.10 162);
+  --cx-accent-glow: oklch(55% 0.15 162 / 0.10);
+  --cx-accent-border: oklch(55% 0.15 162 / 0.35);
+  --cx-space-xs: 0.25rem;
+  --cx-space-sm: 0.5rem;
+  --cx-space-md: 0.75rem;
+  --cx-space-lg: 1rem;
+  --cx-space-xl: 1.5rem;
+  --cx-space-2xl: 2rem;
+  --cx-space-3xl: 3rem;
+  --cx-font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --cx-font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace;
+  --cx-content-max: 960px;
+  --cx-radius-sm: 4px;
+  --cx-radius-md: 6px;
+  --cx-radius-full: 999px;
+  --cx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --cx-fast: 150ms;
+}
+
+/* ── 全局字体覆写 ── */
+body,
+#sidebar .site-title,
+.topbar .nav-link,
+footer {
+  font-family: var(--cx-font-body) !important;
+}
+code, pre, .highlighter-rouge, .post-content code, .post-meta {
+  font-family: var(--cx-font-mono) !important;
+}
+
+/* ── Chirpy accent 色覆写为 Emerald ── */
+:root {
+  --bs-primary: #0e8a65;
+  --bs-primary-rgb: 14, 138, 101;
+}
+a { color: var(--cx-accent); transition: color var(--cx-fast) var(--cx-ease); }
+a:hover { color: var(--cx-accent-muted); }
+
+/* ── 首页 Hero 区 ── */
+.cx-hero {
+  padding: var(--cx-space-xl) 0 var(--cx-space-lg);
+  max-width: var(--cx-content-max);
+  margin: 0 auto;
+}
+.cx-hero-greeting {
+  font-family: var(--cx-font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--cx-accent);
+  margin-bottom: var(--cx-space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--cx-space-sm);
+}
+.cx-hero-greeting::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--cx-accent);
+  opacity: 0.5;
+}
+.cx-hero-title {
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text-primary, #2c2c2a);
+  margin-bottom: var(--cx-space-lg);
+}
+.cx-hero-title em {
+  font-style: normal;
+  color: var(--cx-accent);
+}
+.cx-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary, #5f5e5a);
+  max-width: 600px;
+  margin-bottom: var(--cx-space-xl);
+}
+.cx-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cx-space-sm);
+}
+.cx-hero-tag {
+  font-family: var(--cx-font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary, #5f5e5a);
+  padding: var(--cx-space-xs) var(--cx-space-md);
+  border: 1px solid var(--border-subtle, #d3d1c7);
+  border-radius: var(--cx-radius-full);
+  transition: all var(--cx-fast) var(--cx-ease);
+}
+.cx-hero-tag:hover {
+  color: var(--cx-accent);
+  border-color: var(--cx-accent-border);
+  background: var(--cx-accent-glow);
+}
+
+/* ── 分隔线 ── */
+.cx-divider {
+  max-width: var(--cx-content-max);
+  margin: 0 auto;
+}
+.cx-divider hr {
+  border: none; height: 1px;
+  background: var(--border-subtle, #d3d1c7);
+  opacity: 0.5;
+}
+
+/* ── 文章列表区 ── */
+.cx-posts {
+  padding: var(--cx-space-xl) 0 var(--cx-space-2xl);
+  max-width: var(--cx-content-max);
+  margin: 0 auto;
+}
+.cx-section-label {
+  font-family: var(--cx-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary, #888780);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--cx-space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--cx-space-sm);
+}
+.cx-section-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-subtle, #d3d1c7); opacity: 0.5;
+}
+.cx-post-list {
+  display: flex; flex-direction: column;
+  gap: var(--cx-space-xl); list-style: none; padding: 0; margin: 0;
+}
+.cx-post-item {
+  display: grid; grid-template-columns: 1fr; gap: var(--cx-space-sm);
+  padding-bottom: var(--cx-space-lg);
+  border-bottom: 1px solid var(--border-subtle, #d3d1c7);
+  transition: border-color 250ms var(--cx-ease);
+}
+.cx-post-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cx-post-item:hover { border-bottom-color: var(--cx-accent-border); }
+.cx-post-item:last-child:hover { border-bottom-color: transparent; }
+.cx-post-meta {
+  display: flex; align-items: center; gap: var(--cx-space-lg); flex-wrap: wrap;
+}
+.cx-post-date {
+  font-family: var(--cx-font-mono); font-size: 0.78rem; font-weight: 500;
+  color: var(--text-tertiary, #888780);
+}
+.cx-post-categories { display: flex; gap: var(--cx-space-sm); }
+.cx-post-category {
+  font-size: 0.78rem; font-weight: 500; color: var(--cx-accent);
+  padding: 2px var(--cx-space-sm);
+  background: var(--cx-accent-glow); border-radius: var(--cx-radius-sm);
+}
+.cx-post-title {
+  font-size: 1.625rem; font-weight: 600; line-height: 1.3;
+  letter-spacing: -0.02em; color: var(--text-primary, #2c2c2a);
+  margin: 0; transition: color var(--cx-fast) var(--cx-ease);
+}
+.cx-post-item:hover .cx-post-title { color: var(--cx-accent); }
+.cx-post-excerpt {
+  font-size: 0.95rem; line-height: 1.65;
+  color: var(--text-secondary, #5f5e5a);
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; margin: 0;
+}
+.cx-post-tags { display: flex; gap: var(--cx-space-sm); flex-wrap: wrap; }
+.cx-post-tag {
+  font-family: var(--cx-font-mono); font-size: 0.78rem;
+  color: var(--text-tertiary, #888780); transition: color var(--cx-fast) var(--cx-ease);
+}
+.cx-post-tag::before { content: '#'; opacity: 0.4; }
+.cx-post-tag:hover { color: var(--cx-accent); }
+.cx-view-all { margin-top: var(--cx-space-xl); }
+.cx-view-all a {
+  font-family: var(--cx-font-mono); font-size: 0.875rem; font-weight: 500;
+  color: var(--text-tertiary, #888780);
+  display: inline-flex; align-items: center; gap: var(--cx-space-sm);
+  transition: all var(--cx-fast) var(--cx-ease);
+}
+.cx-view-all a:hover { color: var(--cx-accent); gap: var(--cx-space-md); }
+.cx-view-all a::after { content: '→'; transition: transform var(--cx-fast) var(--cx-ease); }
+.cx-view-all a:hover::after { transform: translateX(2px); }
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  .cx-hero-title    { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .cx-hero-desc     { font-size: 0.95rem; }
+  .cx-post-title    { font-size: 1.375rem; }
+}
+@media (min-width: 1024px) {
+  .cx-post-item {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--cx-space-3xl);
+    align-items: baseline;
+  }
+  .cx-post-meta      { grid-column: 1; grid-row: 1; flex-direction: column; align-items: flex-start; gap: var(--cx-space-sm); min-width: 120px; }
+  .cx-post-title     { grid-column: 2; grid-row: 1; }
+  .cx-post-excerpt   { grid-column: 2; grid-row: 2; }
+  .cx-post-tags      { grid-column: 2; grid-row: 3; }
+}
+
+/* ── 暗色主题适配 ── */
+[data-bs-theme='dark'] .cx-hero-title     { color: oklch(92% 0 0); }
+[data-bs-theme='dark'] .cx-hero-desc,
+[data-bs-theme='dark'] .cx-hero-tag       { color: oklch(62% 0.01 210); }
+[data-bs-theme='dark'] .cx-section-label  { color: oklch(42% 0.01 210); }
+[data-bs-theme='dark'] .cx-post-title     { color: oklch(92% 0 0); }
+[data-bs-theme='dark'] .cx-post-excerpt   { color: oklch(62% 0.01 210); }
+[data-bs-theme='dark'] .cx-post-date,
+[data-bs-theme='dark'] .cx-post-tag       { color: oklch(42% 0.01 210); }
+[data-bs-theme='dark'] .cx-divider hr,
+[data-bs-theme='dark'] .cx-post-item      { border-color: oklch(24% 0.01 210); }
+[data-bs-theme='dark'] .cx-section-label::after { background: oklch(24% 0.01 210); }
+
+/* ── 侧边栏收窄到 235px ── */
+#sidebar,
+.sidebar,
+aside.d-flex.flex-column {
+  width: 235px !important;
+  min-width: 235px !important;
+  max-width: 235px !important;
+}
+#main-wrapper,
+main#main-content {
+  margin-left: 235px !important;
+}
+
+/* ── 选区与滚动条 ── */
+::selection { background: oklch(55% 0.15 162 / 0.20); }
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb   { background: var(--border-subtle, #d3d1c7); border-radius: var(--cx-radius-full); }

@@ -5,3 +5,6 @@
 
 <!-- ⭐ 构建时间戳：方便排查是否加载了最新版本 -->
 <meta name="build-time" content="{{ site.time | date: '%Y-%m-%d %H:%M:%S %Z' }}">
+
+<!-- ⭐ 自定义样式（v5.3 平衡版）：绕过 SCSS 编译，直接引入普通 CSS -->
+<link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
