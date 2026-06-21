@@ -56,6 +56,9 @@
   /* 布局 */
   --cx-content-max: 960px;
 
+  /* 侧边栏（C1 决策：保留 Chirpy 原生，但收窄） */
+  --sidebar-width: 200px;
+
   /* 圆角 */
   --cx-radius-sm: 4px;
   --cx-radius-md: 6px;
@@ -99,17 +102,17 @@ a:hover {
 
 /* ── 首页 Hero 区 ── */
 .cx-hero {
-  padding: var(--cx-space-md) 0 var(--cx-space-sm);
+  padding: var(--cx-space-xl) 0 var(--cx-space-md);
   max-width: var(--cx-content-max);
   margin: 0 auto;
 }
 
 .cx-hero-greeting {
   font-family: var(--cx-font-mono);
-  font-size: var(--cx-space-sm);
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--cx-accent);
-  margin-bottom: var(--cx-space-sm);
+  margin-bottom: var(--cx-space-md);
   display: flex;
   align-items: center;
   gap: var(--cx-space-sm);
@@ -125,12 +128,12 @@ a:hover {
 }
 
 .cx-hero-title {
-  font-size: clamp(1.5rem, 3.5vw, 2.125rem);
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.03em;
   color: var(--cx-text-primary, #2c2c2a);
-  margin-bottom: var(--cx-space-sm);
+  margin-bottom: var(--cx-space-lg);
 }
 
 .cx-hero-title em {
@@ -139,11 +142,11 @@ a:hover {
 }
 
 .cx-hero-desc {
-  font-size: var(--cx-space-sm);
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--cx-text-secondary, #5f5e5a);
   max-width: 560px;
-  margin-bottom: var(--cx-space-md);
+  margin-bottom: var(--cx-space-xl);
 }
 
 .cx-hero-tags {
@@ -413,6 +416,18 @@ a:hover {
   .cx-section-label::after {
     background: oklch(24% 0.01 210);
   }
+}
+
+/* ── 侧边栏收窄（C1 决策：保留原生但收窄到 200px）── */
+#sidebar,
+.sidebar {
+  width: var(--sidebar-width, 200px) !important;
+}
+
+/* 主内容区左偏移适配收窄后的侧边栏 */
+main#main-content,
+.flex-grow-1 {
+  margin-left: var(--sidebar-width, 200px) !important;
 }
 
 /* ── 选区与滚动条 ── */
