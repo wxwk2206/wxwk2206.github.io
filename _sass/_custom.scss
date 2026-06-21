@@ -109,7 +109,7 @@ a:hover {
 
 .cx-hero-greeting {
   font-family: var(--cx-font-mono);
-  font-size: 0.875rem;
+  font-size: 1.3125rem;
   font-weight: 500;
   color: var(--cx-accent);
   margin-bottom: var(--cx-space-md);
@@ -142,7 +142,7 @@ a:hover {
 }
 
 .cx-hero-desc {
-  font-size: 1rem;
+  font-size: 1.5rem;
   line-height: 1.6;
   color: var(--cx-text-secondary, #5f5e5a);
   max-width: 560px;
@@ -418,16 +418,29 @@ a:hover {
   }
 }
 
-/* ── 侧边栏收窄（C1 决策：保留原生但收窄到 200px）── */
+/* ── 侧边栏收窄（C1 决策：保留原生但收窄到 ~195px = 默认 260px × 0.75）── */
 #sidebar,
-.sidebar {
-  width: var(--sidebar-width, 200px) !important;
+.sidebar,
+aside.d-flex.flex-column {
+  width: 195px !important;
+  min-width: 195px !important;
+  max-width: 195px !important;
 }
 
 /* 主内容区左偏移适配收窄后的侧边栏 */
+#main-wrapper,
+#main-content,
 main#main-content,
 .flex-grow-1 {
-  margin-left: var(--sidebar-width, 200px) !important;
+  margin-left: 195px !important;
+}
+
+/* 侧边栏内部元素适配窄版 */
+#sidebar .site-title,
+#sidebar .site-subtitle,
+.sidebar .nav-link,
+#sidebar .nav-list .nav-item {
+  font-size: 0.8125rem !important;
 }
 
 /* ── 选区与滚动条 ── */
