@@ -14,9 +14,9 @@ timezone: Asia/Shanghai
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: wxwk2206's Blog # the main title
+title: bluek # the main title
 
-tagline: 安全研究 & 技术笔记 # it will display as the subtitle
+tagline: 安全研究 & 技术分享 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   个人技术博客，专注 Web 安全研究、资产收集、漏洞挖掘与编程学习。

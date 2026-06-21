@@ -68,23 +68,6 @@ a:hover { color: var(--cx-accent-muted); }
   max-width: var(--cx-content-max);
   margin: 0 auto;
 }
-.cx-hero-greeting {
-  font-family: var(--cx-font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--cx-accent);
-  margin-bottom: var(--cx-space-md);
-  display: flex;
-  align-items: center;
-  gap: var(--cx-space-sm);
-}
-.cx-hero-greeting::before {
-  content: '';
-  display: block;
-  width: 24px; height: 1px;
-  background: var(--cx-accent);
-  opacity: 0.5;
-}
 .cx-hero-title {
   font-size: clamp(2rem, 4.5vw, 2.6rem);
   font-weight: 600;
@@ -205,7 +188,7 @@ a:hover { color: var(--cx-accent-muted); }
 .cx-post-tag:hover { color: var(--cx-accent); }
 .cx-view-all { margin-top: var(--cx-space-xl); }
 .cx-view-all a {
-  font-family: var(--cx-font-mono); font-size: 0.875rem; font-weight: 500;
+  font-family: var(--cx-font-mono); font-size: 1.3125rem; font-weight: 500; /* 21px，原 14px 的 1.5 倍 */
   color: var(--text-tertiary, #888780);
   display: inline-flex; align-items: center; gap: var(--cx-space-sm);
   transition: all var(--cx-fast) var(--cx-ease);
@@ -257,6 +240,26 @@ aside.d-flex.flex-column {
 #main-wrapper,
 main#main-content {
   margin-left: 235px !important;
+}
+
+/* ── 隐藏侧边栏副标题（tagline 视觉删除，SEO 仍由 description 提供）── */
+#sidebar .site-subtitle {
+  display: none !important;
+}
+
+/* ── 侧边栏导航链接放大 + 加大间距 ── */
+#sidebar .nav-link {
+  font-size: 1.0625rem;        /* 17px，原 16px */
+  font-weight: 600;
+  padding-top: 0.65rem;        /* 加大上下内边距 */
+  padding-bottom: 0.65rem;
+  border-radius: var(--cx-radius-md);
+}
+#sidebar .nav-item {
+  margin-bottom: 0.35rem;      /* 加大项与项之间的间距 */
+}
+#sidebar .nav-item:last-child {
+  margin-bottom: 0;
 }
 
 /* ── 选区与滚动条 ── */
