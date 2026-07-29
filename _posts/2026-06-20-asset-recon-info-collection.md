@@ -3,7 +3,6 @@ title: "资产收集与信息收集：测绘引擎与 Fofa 实战语法"
 date: 2026-06-20 12:00:00 +0800
 categories: [安全基础, 资产收集]
 tags: [信息收集, 资产收集, fofa, 测绘, 侦察]
-description: "用 Fofa/Shodan/Zoomeye 等测绘引擎做被动资产发现，附常用语法与批量技巧。"
 ---
 
 ## 01.测绘引擎

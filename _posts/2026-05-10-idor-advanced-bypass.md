@@ -3,7 +3,6 @@ title: "IDOR 实战进阶：绕过加密 ID、JWT 与多步校验"
 date: 2026-05-10 12:00:00 +0800
 categories: [Web安全, 越权]
 tags: [越权, idor, 绕过, 实战]
-description: "面对 Base64/AES ID、Hash 签名、JWT 角色、GraphQL 与多步校验时，如何逐一突破 IDOR 防护。"
 ---
 
 ## 1."换数字"不够用

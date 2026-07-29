@@ -3,7 +3,6 @@ title: "网络数据包基础：从报文结构理解 Web 通信"
 date: 2026-01-12 12:00:00 +0800
 categories: [安全基础, 网络]
 tags: [数据包, 网络, TCP, UDP]
-description: "用「快递单+包裹」的比喻讲清数据包结构、TCP/UDP 差异与常见协议，打好 Web 安全的网络底子。"
 ---
 
 ## 数据包（Packet）核心概念

@@ -3,7 +3,6 @@ title: "反射型 XSS 原理与实战：藏在 URL 里的脚本"
 date: 2026-02-15 12:00:00 +0800
 categories: [Web安全, XSS]
 tags: [xss, 反射型, 漏洞原理]
-description: "从「URL→服务器→反射」的链路理解反射型 XSS 的成因、特征与实战注入点。"
 ---
 
 XSS:Cross-Site Scripting(缩写不叫 CSS（CSS 是层叠样式表，重名冲突），因此简写为 XSS)
