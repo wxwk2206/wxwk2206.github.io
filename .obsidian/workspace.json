@@ -11,12 +11,14 @@
             "id": "6f2c58ab0b9aab3e",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "assets/img/avatar.jpg"
+                "file": "_posts/2026-06-10-C语言语法基础.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "avatar"
+              "icon": "lucide-file",
+              "title": "2026-06-10-C语言语法基础"
             }
           }
         ]
@@ -183,6 +185,7 @@
   },
   "active": "6f2c58ab0b9aab3e",
   "lastOpenFiles": [
+    "assets/img/avatar.jpg",
     "README.md",
     "_tabs/archives.md",
     "_tabs/categories.md",
