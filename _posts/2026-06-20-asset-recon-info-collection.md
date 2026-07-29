@@ -22,6 +22,7 @@ tags: [信息收集, 资产收集, fofa, 测绘, 侦察]
 ### Fofa 操作步骤
 
 **1. 基础搜索语法**
+
 ```
 # 搜索目标主域名下的所有资产
 domain="example.com"
@@ -49,6 +50,7 @@ domain="example.com" && (port="80" || port="443")
 ```
 
 **2. 批量查询技巧**
+
 ```bash
 # 使用 Fofa API 批量查询（需要会员）
 # API 地址：https://fofa.info/api/v1/search/all
@@ -58,6 +60,7 @@ curl "https://fofa.info/api/v1/search/all?email=xxx&key=xxx&qbase64=ZG9tYWluPSJl
 ```
 
 **3. 实用语法组合**
+
 ```
 # 查 CDN 后的真实 IP
 cert="example.com" && type="subdomain"
@@ -72,6 +75,7 @@ title="登录" && body="password" && domain="example.com"
 ### Shodan 操作步骤
 
 **1. CLI 安装与使用**
+
 ```bash
 # 安装 shodan CLI
 pip install shodan
@@ -91,6 +95,7 @@ shodan parse result.json.gz --fields ip_str,port
 ```
 
 **2. Web 搜索语法**
+
 ```
 # SSL 证书搜索
 ssl:"example.com"
@@ -120,6 +125,7 @@ country:"CN" ssl:"example.com"
 ### Google 搜索语法
 
 **1. 基础操作符**
+
 ```
 site:example.com                    # 限定搜索站点
 intitle:"index of"                  # 搜索页面标题
@@ -131,6 +137,7 @@ cache:example.com                   # 查看快照
 ```
 
 **2. 敏感信息搜集**
+
 ```
 # 搜索配置文件
 site:example.com filetype:env
@@ -157,6 +164,7 @@ site:example.com intext:"stack trace" || intext:"warning"
 ```
 
 **3. 子域名发现**
+
 ```
 site:*.example.com -www
 site:*.example.com -www -mail -m -dev
@@ -165,6 +173,7 @@ site:*.example.com -www -mail -m -dev
 ### Baidu/Bing 操作步骤
 
 Baidu 同样支持基本语法：
+
 ```
 site:example.com
 site:example.com intitle:管理
@@ -174,6 +183,7 @@ site:example.com filetype:pdf
 ### 自动化搜索工具
 
 **1. GooFuzz（自动化 Google Hacking）**
+
 ```bash
 # 安装
 git clone https://github.com/m3n0sd0n4ld/GooFuzz.git
@@ -259,6 +269,7 @@ puredns bruteforce dict.txt example.com -r resolvers.txt -w output.txt
 ### 字典准备
 
 **1. 常用字典**
+
 ```bash
 # 子域名字典推荐
 # - SecLists/Discovery/DNS 系列
@@ -272,6 +283,7 @@ wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/
 ```
 
 **2. 自行生成字典**
+
 ```bash
 # 使用 dnsgen 从已知子域生成变种（需要 Python3）
 pip install dnsgen
@@ -403,6 +415,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ### 爱企查操作步骤
 
 **1. 基础查询**
+
 ```
 # 输入公司全称 → 查看详情
 # 关键信息：
@@ -414,6 +427,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ```
 
 **2. 域名/资产线索发现**
+
 ```
 # 方法一：ICP 备案查询
 企业详情页 → 知识产权 → 网站备案
@@ -429,6 +443,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ```
 
 **3. 股权穿透（关键步骤）**
+
 ```
 # 为什么要做股权穿透？
 目标公司的主域名可能备案在母公司或子公司名下
@@ -441,6 +456,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ```
 
 **4. 人员关联挖掘**
+
 ```
 # 从高管/法人入手
 1. 查看目标公司的主要人员（法人、董事、监事）

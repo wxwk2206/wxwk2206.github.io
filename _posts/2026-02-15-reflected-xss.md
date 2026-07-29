@@ -12,6 +12,7 @@ XSS:Cross-Site Scripting(缩写不叫 CSS（CSS 是层叠样式表，重名冲�
 正常流程 vs 攻击流程对比：
 - 正常：URL → 服务器 → 返回 HTML → 浏览器渲染
 - 攻击：URL 含 `<script>` → 服务器未过滤 → HTML 里嵌入了脚本 → 浏览器执行脚本
+
 ```
 # 正常请求
 GET /search?q=hello HTTP/1.1
@@ -26,6 +27,7 @@ GET /search?q=<script>alert('XSS')</script> HTTP/1.1
 <h1>搜索结果：<script>alert('XSS')</script></h1>
 #                           ↑ 浏览器会执行这个脚本！
 ```
+
 **反射型 XSS 的核心特征**
 恶意代码不存储在服务器上——它只在 URL 中"路过"服务器，被反射回来。这也是"反射型"名字的来由。必须用户主动点击恶意链接才会触发。
 ## 2.实战流程

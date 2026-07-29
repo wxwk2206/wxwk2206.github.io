@@ -10,6 +10,7 @@ tags: [越权, idor, 访问控制, 逻辑漏洞]
 应用程序没有正确验证"当前用户是否有权限访问这段数据/执行这个操作"，导致攻击者通过修改请求中的参数（如 ID），就**能看到或操作别人的数据**。
 
 越权漏洞的核心问题在于：应用信任了用户可控制的输入来做授权决定。
+
 ```
 # ⭐ 典型的越权场景
 # 用户A登录后，访问自己的订单：
@@ -46,6 +47,7 @@ Cookie: session=用户A的凭证
 | 请求头/Cookie  | `X-User-ID: 123`、`role=user`      | ★★★   |
 ## 3.垂直越权的 4 种攻击手法
 ### 3.1未受保护的管理页面
+
 ```
 # 最简单的越权——直接访问
 https://target.com/admin              # 管理后台
@@ -57,7 +59,9 @@ https://target.com/manager/dashboard  # 主管面板
 # 2. JS 源码中搜索 admin、manager、dashboard
 # 3. 字典爆破（dirmap、dirsearch）
 ```
+
 ### 3.2参数控制角色
+
 ```
 # ⭐ 经典：通过参数切换角色
 # 登录时服务器校验了角色，但存在可控参数
@@ -70,7 +74,9 @@ Cookie: session=xxx; role=user   →  改成 role=admin
 # 或 JSON 响应中修改
 # 服务器返回 {"role": "user"} → 拦截后改成 {"role": "admin"}
 ```
+
 ### 3.3URL 路径绕过
+
 ```
 # ⭐ 平台层配置了访问控制规则，但可被绕过
 # 规则：DENY POST /admin/deleteUser（禁止普通用户）
@@ -85,7 +91,9 @@ X-Original-URL: /admin/deleteUser
 # 绕过5：换 HTTP 方法
 # POST 被禁，试试 GET
 ```
+
 ### 3.4多步骤流程中漏掉验证
+
 ```
 # 修改邮箱的3步流程：
 # 第1步 GET    /account/edit     → ✅ 有权限验证
@@ -99,6 +107,7 @@ email=attacker@evil.com
 ```
 
 ## 4.水平越权（IDOR）攻击实战
+
 ```
 # ⭐ 场景1：遍历订单ID
 GET /api/order/1001 → 自己的订单
@@ -115,11 +124,13 @@ POST /api/transfer
 {"from_account": 12345, "to_account": 67890, "amount": 100}
 # 改 from_account → 用别人的账户转账
 ```
+
  **IDOR 不止是看数据——也能写！**
 IDOR 不只能读别人数据，遇到 PUT/DELETE 操作还能修改、删除别人的资源。
 例如：DELETE /api/order/1002 → 把别人的订单删了。
 发现的 IDOR 要立刻测试**增删改查**四种操作。
 ## 5.真实 SRC 高危案例
+
 ```
 🔴 严重：水平越权修改他人密码
 某电商网站修改密码接口：POST /api/reset_password
@@ -143,6 +154,7 @@ SRC 评级：高危（信息泄露 + 直接访问）
 SRC 评级：中危
 
 ```
+
 ## 6.怎么挖？—— 越权检测六步法
 **1.找"对象ID"出现在请求中的地方**
 重点关注：URL 中的 id=、user_id=、order_id=。
@@ -168,6 +180,7 @@ Burp 抓账号A的请求，将 ID 换成账号B的 ID，重放。
 如果能拿到数据 → 未授权访问（最严重）。
 
 用 Burp Intruder 批量检测 IDOR
+
 ```
 # 步骤（假设检测 /api/user/ID/profile）：
 # 1. 用账号A登录，访问自己的资料 → /api/user/10/profile
@@ -184,6 +197,7 @@ Burp 抓账号A的请求，将 ID 换成账号B的 ID，重放。
 # 提取返回中的关键字段（如 username、email）
 # → 一目了然看到不同用户的数据
 ```
+
 ## 7.防御方案
 | 防御方案 | 原理 | 优先级 |
 | ---- | ---- | ---- |

