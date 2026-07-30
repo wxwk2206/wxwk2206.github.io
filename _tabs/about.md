@@ -10,10 +10,10 @@ order: 4
 
 ### 技术方向
 
-- 🔐 **Web 安全**：XSS、漏洞赏金（TSRC）
-- 🌐 **资产收集**：测绘引擎、子域爆破、信息收集
-- 💻 **编程**：Java、C 语言
-- 🛠️ **工具**：Obsidian、WorkBuddy、Jekyll
+- 🔐 **Web 安全**：业务逻辑、注入...
+- 🌐 **资产收集**：信息收集、测绘引擎、子域爆破
+- 💻 **编程**：Java、JavaScript、C 语言
+- 🛠️ **工具**：BurpSuite、Fiddler、CE...
 
 ### 关于本站
 
