@@ -11,6 +11,9 @@ lang: zh-CN
 # Change to your timezone › https://zones.arilyn.cc
 timezone: Asia/Shanghai
 
+# ⭐ 发布未来日期的文章(第二批部分笔记日期设到下半年, 默认会被 Jekyll 隐藏)
+future: true
+
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
