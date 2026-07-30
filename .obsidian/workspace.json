@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/模板.md",
+                "file": "_posts/2026-04-18-idor-basics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "模板"
+              "title": "2026-04-18-idor-basics"
             }
           }
         ]
@@ -185,17 +185,18 @@
   },
   "active": "6f2c58ab0b9aab3e",
   "lastOpenFiles": [
-    "_posts/2026-04-18-idor-basics.md",
-    "_posts/2026-06-04-hello-world.md",
-    "_posts/2026-02-28-stored-xss.md",
-    "_posts/2026-02-15-reflected-xss.md",
-    "_posts/2026-01-28-security-core-concepts.md",
     "_posts/2026-01-12-network-packets-basics.md",
+    "_posts/2026-01-28-security-core-concepts.md",
+    "_posts/2026-02-15-reflected-xss.md",
+    "_posts/2026-02-28-stored-xss.md",
     "_posts/2026-03-15-dom-xss.md",
+    "_posts/2026-03-30-csrf.md",
+    "_posts/2026-04-18-idor-basics.md",
     "_posts/2026-05-10-idor-advanced-bypass.md",
     "_posts/2026-06-05-business-logic-vuln-hunting.md",
     "_posts/2026-06-20-asset-recon-info-collection.md",
     "_posts/模板.md",
+    "_posts/2026-06-04-hello-world.md",
     "_posts/2026-06-10-C语言语法基础.md",
     "assets/img/avatar.jpg",
     "README.md",
