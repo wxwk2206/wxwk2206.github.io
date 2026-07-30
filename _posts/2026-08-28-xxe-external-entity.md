@@ -111,7 +111,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 能造成XXE的组件很多,这里就列举一个常用的,进行案例展示
 ```
 
-### 4.1测试环境目录
+## 4.1测试环境目录
 
 ```plain
 // 目录结构
@@ -135,8 +135,8 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 │ └── pom.xml
 ```
 
-### 4.2 DocumentBuilderFactory
-#### 4.2.1 漏洞环境搭建
+## 4.2 DocumentBuilderFactory
+### 4.2.1 漏洞环境搭建
 
 ```plain
 // 第一步
@@ -191,7 +191,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 %>
 ```
 
-#### 4.2.2 攻击利用-回显-1
+### 4.2.2 攻击利用-回显-1
 
 ```plain
 // 攻击数据包-1
@@ -207,7 +207,7 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 <value>%26xxe;</value>
 ```
 
-*（配图略）*
+![pasted image 20260616211812](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211812.png)
 
 
 
@@ -226,9 +226,9 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 <value>%26xxe;</value>
 ```
 
-*（配图略）*
+![pasted image 20260616211827](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211827.png)
 
-#### 4.2.3 攻击利用-回显-2
+### 4.2.3 攻击利用-回显-2
 
 ```plain
 还有一种回显的方式,假设它遇到错误的时候会把错误返回给前端时,这种时候就可以使用该方法进行回显了
@@ -270,9 +270,9 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 ]>
 ```
 
-*（配图略）*
+![pasted image 20260616212011](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212011.png)
 
-#### 4.2.4 攻击利用-无回显
+### 4.2.4 攻击利用-无回显
 
 ```plain
 无回显的的话则需要将文件读取的内容发送到我们的远程服务器上
@@ -332,10 +332,10 @@ A服务器
 里面内容为:123456789
 ```
 
-*（配图略）*
+![pasted image 20260616211914](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211914.png)
 
 
-#### 4.2.5 攻击利用-XML-SSRF
+### 4.2.5 攻击利用-XML-SSRF
 
 ```plain
 // 攻击数据包-1
@@ -354,5 +354,5 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 ]>
 ```
 
-*（配图略）*
-*（配图略）*
+![pasted image 20260616212045](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212045.png)
+![pasted image 20260616212050](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212050.png)

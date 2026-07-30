@@ -56,9 +56,9 @@ function deepMerge(target, source) {
 2. 遇到嵌套对象会递归
 3. 用户输入直接进入 merge，没有键名过滤
 ## 2.构造攻击 payload
-### 2.1 攻击目标
+## 2.1 攻击目标
 我们要让 defaultConfig.features.admin 变成 true，但**不直接修改** features 字段——那样太明显。我们要通过**原型链污染**让所有对象的 admin 都变成 true。
-### 2.2 payload 构造
+## 2.2 payload 构造
 
 ```js
 // ⭐ 攻击者发送的 JSON body
@@ -136,7 +136,7 @@ console.log('\n权限检查 checkAdmin({}):', checkAdmin({}));
 // → true！攻击成功！
 ```
 
-*（配图略）*
+![pasted image 20260622182233](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182233.png)
 > **⚠️ 重点**  注意一个细节
 > defaultConfig.features.admin 还是 false！为什么？因为 features 对象自身有 admin: false 属性，属性查找时**自身属性优先**，不会去原型链找。但新建的空对象 {} 没有自身 admin，就会顺着原型链查到 true。这就是为什么新建用户的权限检查会被绕过。
 
@@ -173,9 +173,9 @@ console.log('数组 [].isAdmin:', [].isAdmin);
 console.log('\n攻击成功！__proto__ 过滤被绕过！');
 ```
 
-*（配图略）*
+![pasted image 20260622182810](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182810.png)
 ## 5.修复方案对比
-### 5.1 方案一：过滤危险键名
+## 5.1 方案一：过滤危险键名
 
 ```js
 // ⭐ 过滤 __proto__、constructor、prototype
@@ -195,7 +195,7 @@ function safeMerge1(target, source) {
 }
 ```
 
-### 5.2 方案二：用 Object.create(null)
+## 5.2 方案二：用 Object.create(null)
 
 ```js
 // ⭐ 创建无原型的对象作为 target
@@ -208,7 +208,7 @@ config.features = { admin: false };
 // 某些场景可能不兼容，需要权衡
 ```
 
-### 5.3 方案三：用 Map 代替普通对象
+## 5.3 方案三：用 Map 代替普通对象
 
 ```js
 // ⭐ Map 没有原型链，完全免疫污染
@@ -224,7 +224,7 @@ function safeMergeMap(target, source) {
 }
 ```
 
-### 5.4 方案四：冻结 Object.prototype
+## 5.4 方案四：冻结 Object.prototype
 
 ```js
 // ⭐ 一劳永逸：冻结原型，任何写入都静默失败（严格模式抛错）
@@ -280,13 +280,13 @@ console.log('{}.isAdmin:', {}.isAdmin);  // → undefined ✅
 console.log('\n修复成功！两种攻击都被拦截！');
 ```
 
-*（配图略）*
-### 7.真实 CVE 案例：lodash.merge
+![pasted image 20260622184008](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622184008.png)
+## 7.真实 CVE 案例：lodash.merge
 
 > **⚠️ 重点**  CVE-2018-3721 / CVE-2020-8203：lodash 原型链污染
 > **真实发生过的案例**。lodash 是最流行的 JS 工具库之一，它的 _.merge 和 _.defaultsDeep 函数在 2018 年和 2020 年分别被发现存在原型链污染漏洞。
 
-### 7.1 漏洞代码模式
+## 7.1 漏洞代码模式
 
 ```
 // ⭐ 真实世界的漏洞用法
@@ -303,14 +303,14 @@ _.merge(config, userInput);
 // lodash 的 merge 内部递归处理，污染了 Object.prototype
 ```
 
-### 7.2 影响范围
+## 7.2 影响范围
 
 | CVE            | 库      | 版本        | 函数                                      |
 | -------------- | ------ | --------- | --------------------------------------- |
 | CVE-2018-3721  | lodash | < 4.17.5  | \_.merge, \_.mergeWith, \_.defaultsDeep |
 | CVE-2019-10744 | lodash | < 4.17.12 | \_.defaultsDeep                         |
 | CVE-2020-8203  | lodash | < 4.17.20 | \_.zipObjectDeep                        |
-### 7.3 其他已知漏洞库
+## 7.3 其他已知漏洞库
 
 | 库        | CVE            | 说明                      |
 | -------- | -------------- | ----------------------- |

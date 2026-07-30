@@ -36,13 +36,13 @@ java.lang.reflect.Method#invoke方法
 ```
 
 ## 0x04 例子
-### 0x04.1 概述
+## 0x04.1 概述
 
 ```plain
 本示例列举了Java代码审计中最基础的命令执行环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
-### 0x04.2 测试环境目录
+## 0x04.2 测试环境目录
 
 ```plain
 // 目录结构
@@ -65,8 +65,8 @@ java.lang.reflect.Method#invoke方法
 │ └── pom.xml
 ```
 
-### 0x04.3 runtime
-#### 0x04.3.1 测试环境搭建
+## 0x04.3 runtime
+### 0x04.3.1 测试环境搭建
 
 ```plain
 <%-- 路径: ./SpringMVCtest/src/main/webapp/runtime-exec-test.jsp --%>
@@ -95,18 +95,18 @@ java.lang.reflect.Method#invoke方法
 %>
 ```
 
-#### 0x04.3.2 漏洞测试
+### 0x04.3.2 漏洞测试
 
 ```plain
 访问url: http://127.0.0.1:8081/SpringMVCtest_war/runtime-exec-test.jsp?cmd=whoami
 ```
 
-*（配图略）*
+![pasted image 20260618083904](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083904.png)
 
-*（配图略）*
+![pasted image 20260618083912](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083912.png)
 
-### 0x04.4 reflection(反射调用)
-#### 0x04.4.1 测试环境搭建
+## 0x04.4 reflection(反射调用)
+### 0x04.4.1 测试环境搭建
 
 ```plain
 <%-- 路径: ./SpringMVCTest2/src/main/webapp/reflection-rce-test.jsp --%>
@@ -156,12 +156,12 @@ java.lang.reflect.Method#invoke方法
 %>
 ```
 
-#### 0x04.4.2 漏洞测试
+### 0x04.4.2 漏洞测试
 
 ```plain
 http://127.0.0.1:8081/SpringMVCtest_war/reflection-rce-test.jsp?name=java.lang.Runtime&method=exec&str=whoami
 ```
 
-*（配图略）*
+![pasted image 20260618083936](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083936.png)
 
-*（配图略）*
+![pasted image 20260618083932](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083932.png)

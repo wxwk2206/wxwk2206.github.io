@@ -95,7 +95,7 @@ Inet6Address类的isSiteLocalAddress()
 只要记住这句话,SSRF漏洞挖掘起来就不难
 
 ## 8.SSRF 常见可读取敏感文件清单
-### 一、Windows 系统
+## 一、Windows 系统
 
 | **文件路径** | **用途与敏感信息** |
 | :--- | :--- |
@@ -113,7 +113,7 @@ Inet6Address类的isSiteLocalAddress()
 
 ---
 
-### 二、Linux 系统
+## 二、Linux 系统
 
 | **文件路径** | **用途与敏感信息** |
 | :--- | :--- |
@@ -133,7 +133,7 @@ Inet6Address类的isSiteLocalAddress()
 | `file:///etc/redis/redis.conf` | Redis 配置，可能含密码或未授权访问 |
 
 ---
-### 三、Java/Tomcat 应用通用敏感文件
+## 三、Java/Tomcat 应用通用敏感文件
 
 | **文件路径** | **用途与敏感信息** |
 | :--- | :--- |
@@ -144,7 +144,7 @@ Inet6Address类的isSiteLocalAddress()
 | `file:///conf/Catalina/localhost/` | Tomcat 上下文配置，可能含数据源密码 |
 
 ## 9.例子
-### 9.1测试环境目录
+## 9.1测试环境目录
 
 ```plain
 // 目录结构
@@ -168,7 +168,7 @@ Inet6Address类的isSiteLocalAddress()
 │ └── pom.xml
 ```
 
-### 9.2URLConnection-读取文件
+## 9.2URLConnection-读取文件
 **URLConnection: 可以走java中支持的各种协议,例如file**
 
 ```jsp
@@ -225,7 +225,7 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260616211633](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211633.png)
 
 ```plain
 // 利用file协议查看文件
@@ -241,15 +241,15 @@ Connection: close
 ```
 
 查看 C:Windows/win.ini
-*（配图略）*
+![pasted image 20260616211654](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211654.png)
 
 查看 my.ini
-*（配图略）*
+![pasted image 20260616211702](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211702.png)
 
 查看 web.xml
-*（配图略）*
+![pasted image 20260616211707](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211707.png)
 
-### 9.3HttpURLConnection-内网探测
+## 9.3HttpURLConnection-内网探测
 **HttpURLConnection: 只能走HTTP或是HTTPS协议**
 
 ```plain
@@ -308,11 +308,11 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-*（配图略）*
+![pasted image 20260616211716](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211716.png)
 
-*（配图略）*
+![pasted image 20260616211722](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211722.png)
 
-### 9.4JSTL-<c:import>读取文件与SSRF
+## 9.4JSTL-<c:import>读取文件与SSRF
 
 ```xml
 <!-- 第一步 -->
@@ -356,6 +356,6 @@ http://127.0.0.1:8081/SpringMVCTest2_war/ssrf/ssrfTest3.jsp?pathName=file:///C:/
 http://127.0.0.1:8081/SpringMVCTest2_war/ssrf/ssrfTest3.jsp?pathName=http://127.0.0.1:8081
 ```
 
-*（配图略）*
+![pasted image 20260616211731](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211731.png)
 
-*（配图略）*
+![pasted image 20260616211737](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211737.png)

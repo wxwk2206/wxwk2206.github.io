@@ -353,7 +353,7 @@ Java 动态代理-JDK原生: [https://www.yuque.com/pmiaowu/gpy1q8/ze4mgq](https
 
 老样子先问问题,边问边答
 
-### 0x06.1 四问
+## 0x06.1 四问
 第一个问题,看看`LazyMap类`的`decorate`方法干了什么?
 
 第二个问题,简单介绍一下动态代理?做了什么?
@@ -362,16 +362,16 @@ Java 动态代理-JDK原生: [https://www.yuque.com/pmiaowu/gpy1q8/ze4mgq](https
 
 第四个问题,整体运行流程是?
 
-### 0x06.2 四答
-#### 第一个问题答案:
+## 0x06.2 四答
+### 第一个问题答案:
 对应POC代码`Map outerMap = LazyMap.decorate(innerMap, transformerChain);`
-*（配图略）*
+![pasted image 20260703172817](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172817.png)
 
 只是单纯的赋值操作
 
 其中把传进来的`transformerChain`赋值给了`this.factory`
 
-#### 第二个问题答案:
+### 第二个问题答案:
 还是简单介绍一下,动态代理需要的类与参数
 
 `Proxy`的`newProxyInstance`方法接收的三个参数的作用分别为:
@@ -407,7 +407,7 @@ Map proxyMap = (Map) Proxy.newProxyInstance(Map.class.getClassLoader(), new Clas
 
 最终构造完以后,返回一个`Map proxyMap`,它现在就是一个代理对象了
 
-#### 第三个问题答案:
+### 第三个问题答案:
 在看看以下一段POC代码,看看做了啥,先看一眼对应的POC:
 
 ```java
@@ -440,7 +440,7 @@ AnnotationInvocationHandler(Class<? extends Annotation> var1, Map<String, Object
 
 
 
-#### 第四个问题答案:
+### 第四个问题答案:
 现在查看运行流程
 
 POC执行反序列化的时候,会先执行`AnnotationInvocationHandler`类的`readObject()`方法
@@ -474,11 +474,11 @@ POC执行反序列化的时候,会先执行`AnnotationInvocationHandler`类的`r
 
 
 debug流程如下:
-*（配图略）*
+![pasted image 20260703172831](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172831.png)
 
-*（配图略）*
+![pasted image 20260703172838](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172838.png)
 
-*（配图略）*
+![pasted image 20260703172846](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172846.png)
 
 ## 0x07 结尾
 CC1在jdk1.7u21、jdk1.8_101、jdk1.8_171时,都是可用的(网上的大佬说的,我照抄)  

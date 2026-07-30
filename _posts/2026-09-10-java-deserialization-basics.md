@@ -51,7 +51,7 @@ tomcat服务器会在服务器关闭时把session序列化
 ```
 
 ## 3 审计策略
-### 3.1 其它情况下审计策略
+## 3.1 其它情况下审计策略
 
 ```plain
 审计策略一:
@@ -69,7 +69,7 @@ tomcat服务器会在服务器关闭时把session序列化
 一些服务的传输可能存在反序列化,比如:自定义协议(使用了反序列化进行数据传输),RMI
 ```
 
-### 3.2 方便快速审计的污点跟踪类
+## 3.2 方便快速审计的污点跟踪类
 
 ```plain
 在代码审计前如果有pom.xml文件,可优先查看pom.xml文件
@@ -129,11 +129,11 @@ org.springframework:spring-aop4.1.4.RELEASE
 3. 查找对应版本的Fastjson查看是否有CVE
 ```
 
-*（配图略）*
+![pasted image 20260618083117](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083117.png)
 
-*（配图略）*
+![pasted image 20260618083122](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083122.png)
 
-*（配图略）*
+![pasted image 20260618083128](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083128.png)
 
 ## 5 修复方法
 
@@ -150,13 +150,13 @@ org.springframework:spring-aop4.1.4.RELEASE
 ```
 
 ## 6 示例
-### 6.1 概述
+## 6.1 概述
 
 ```plain
 本示例列举了Java代码审计中最基础的反序列化环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
-### 6.2 测试环境目录
+## 6.2 测试环境目录
 
 ```plain
 // 目录结构
@@ -180,7 +180,7 @@ org.springframework:spring-aop4.1.4.RELEASE
 │ └── pom.xml
 ```
 
-### 6.3 测试环境搭建
+## 6.3 测试环境搭建
 
 ```java
 // 路径: ./SpringMVCtest/src/main/com/test/controller/deserialize/DeserializeTest.java
@@ -233,8 +233,8 @@ public class DeserializeTest {
 }
 ```
 
-### 6.4 反序列化攻击测试
-#### 6.4.1 生成攻击payload
+## 6.4 反序列化攻击测试
+### 6.4.1 生成攻击payload
 
 ```plain
 实战利用推荐使用ysoserial
@@ -299,9 +299,9 @@ public class UrlDnsTest {
 // 修改main函数的url变量,然后找个JDK1.8的环境运行一下即可
 ```
 
-*（配图略）*
+![pasted image 20260618083143](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083143.png)
 
-#### 6.4.2 普通反序列化攻击
+### 6.4.2 普通反序列化攻击
 
 ```plain
 // 反序列化攻击数据包
@@ -316,11 +316,11 @@ Content-Length: 269
 将UrlDnsTestPoc.ser的内容导入进来
 ```
 
-*（配图略）*
+![pasted image 20260618083156](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083156.png)
 
-*（配图略）*
+![pasted image 20260618083202](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083202.png)
 
-#### 6.4.3 Base64反序列化攻击
+### 6.4.3 Base64反序列化攻击
 
 ```plain
 // 反序列化攻击数据包
@@ -335,22 +335,22 @@ Content-Length: 360
 输入base64编码以后的反序列化数据
 ```
 
-*（配图略）*
+![pasted image 20260618083209](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083209.png)
 
-*（配图略）*
+![pasted image 20260618083213](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083213.png)
 
-### 6.5 Wireshark查找反序列化数据包
-*（配图略）*
+## 6.5 Wireshark查找反序列化数据包
+![pasted image 20260618083218](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083218.png)
 
-*（配图略）*
+![pasted image 20260618083224](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083224.png)
 
-*（配图略）*
+![pasted image 20260618083229](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083229.png)
 
-### 6.6 Wireshark查找Base64反序列化数据包
-*（配图略）*
+## 6.6 Wireshark查找Base64反序列化数据包
+![pasted image 20260618083235](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083235.png)
 
-*（配图略）*
+![pasted image 20260618083240](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083240.png)
 
-*（配图略）*
+![pasted image 20260618083244](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083244.png)
 
 

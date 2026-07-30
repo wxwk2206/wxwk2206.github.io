@@ -17,7 +17,7 @@ tags: [越权, idor, 绕过, 实战]
 | JWT 角色控制             | Token 里有 `"role":"user"`          |
 | 多步骤验证                | 第3步忘了加权限检查                        |
 ## 2.加密/编码 ID 的绕过
-### 2.1：Base64 编码 ID
+## 2.1：Base64 编码 ID
 有些应用把 ID 做 Base64 编码，觉得"攻击者看不懂"。
 
 ```
@@ -34,7 +34,7 @@ echo -n '{"user_id":124}' | base64
 
  实战要点
 Base64 不是加密，是编码。看到 = 结尾、字符集是 A-Za-z0-9+/ 的，先解码看看。 URL 中的 Base64 可能用 - 和 _ 替代 + 和 /（URL-safe Base64）。
-### 2.2：Hash/签名 ID
+## 2.2：Hash/签名 ID
 有些应用用 MD5(user_id) 或 HMAC(user_id, secret) 作为参数。
 
 ```
@@ -62,7 +62,7 @@ for i in range(1, 10001):
 > 2. 找到加密函数后，直接在 Console 里调用它生成任意 ID 的 hash
 > 3. window.encryptUserId(124) → 拿到 124 的合法 hash
 
-### 2.3：AES/DES 加密 ID — 前端泄露密钥
+## 2.3：AES/DES 加密 ID — 前端泄露密钥
 有些应用用 AES 加密 ID，看起来无懈可击。但密钥写在前端 JS 里——等于锁了门把钥匙挂在门把手上。
 
 ```
@@ -101,7 +101,7 @@ eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMjMsInJvbGUiOiJ1c2VyIn0.xxxxx
 # ⭐ 攻击思路：如果服务端不验证签名，直接改 Payload 就行
 ```
 
-### 3.1：alg: none 绕过
+## 3.1：alg: none 绕过
 JWT 标准允许 "alg":"none"，表示不签名。如果服务端信任这个声明，你就能伪造任意 Token。
 
 ```
@@ -124,7 +124,7 @@ eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYWRtaW4ifQ.
 
 工具推荐：Burp 插件 **JWT Editor**
 （PortSwigger 官方）：自动修改 JWT Payload，支持 alg:none 攻击和密钥爆破。 手动也可以，用 jwt.io 在线编解码。
-### 3.2：弱密钥爆破
+## 3.2：弱密钥爆破
 如果 alg:none 不行，说明服务端验签了。但如果密钥太弱（如 "secret"、"123456"），可以爆破。
 
 ```
@@ -139,7 +139,7 @@ hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 # 在 jwt.io 上输入密钥，修改 role 为 admin，生成新 Token
 ```
 
-### 3.3：算法混淆攻击（RS256 → HS256）
+## 3.3：算法混淆攻击（RS256 → HS256）
 服务端用 RS256（非对称），公钥公开。如果库实现有缺陷，你可以把算法改成 HS256（对称），用公钥当 HMAC 密钥签名。
 
 ```
@@ -160,7 +160,7 @@ hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
 
 ## 4.HTTP 方法绕过
 很多 API 网关只对 GET/POST 做了权限控制，忘了管其他方法。
-### 4.1方法切换绕过
+## 4.1方法切换绕过
 
 ```
 # 场景：GET 被拦截（403 Forbidden）
@@ -181,7 +181,7 @@ X-HTTP-Method-Override: GET
 # 某些框架（Express、Spring）会按这个头路由
 ```
 
-### 4.2路径变体绕过
+## 4.2路径变体绕过
 
 ```
 # Nginx/Apache 规则匹配 /admin 但不匹配 /admin/ 的情况
@@ -204,7 +204,7 @@ X-HTTP-Method-Override: GET
 ## 5.GraphQL IDOR — 很多团队根本不会防
 GraphQL 是近年最流行的 API 架构。但很多团队把 REST 的 IDOR 防御逻辑搬过来时忘了适配——GraphQL 的 IDOR 更隐蔽。
 
-### 5.1GraphQL 内省 → 发现所有查询
+## 5.1GraphQL 内省 → 发现所有查询
 
 ```
 # 发送内省查询，列出所有 API 和字段
@@ -217,7 +217,7 @@ POST /graphql
 #           document(id: ID!): Document
 ```
 
-### 5.2GraphQL IDOR 的 3 种利用方式
+## 5.2GraphQL IDOR 的 3 种利用方式
 
 ```
 # 方式1：直接换 ID（和 REST 一样）
@@ -250,7 +250,7 @@ POST /graphql
 ## 6.文件操作中的 IDOR — 最容易漏检
 开发者在做 API 权限校验时很认真，但文件下载/上传接口经常被遗漏。
 
-### 6.1文件下载 IDOR
+## 6.1文件下载 IDOR
 
 ```
 # 场景：下载自己的发票
@@ -269,7 +269,7 @@ GET /download?file=../../config/database.yml
 # invoice_20240101_123.pdf → 遍历 _1 到 _10000
 ```
 
-### 6.2导出接口 IDOR
+## 6.2导出接口 IDOR
 
 ```
 # 导出自己的数据

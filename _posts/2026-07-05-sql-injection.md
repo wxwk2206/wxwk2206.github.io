@@ -13,7 +13,7 @@ SQL注入的本质是因为,用户的可控参数,未过滤/过滤不严格,又�
 ```
 
 ## 2.审计策略
-### 2.1常规情况下审计策略
+## 2.1常规情况下审计策略
 
 ```plain
 审计策略一: 
@@ -54,8 +54,8 @@ JdbcTemplate.update(SQL2, new Object[]{"小陈", 25});
 查看是否做了字段限制,这种地方框架是没法使用预编译,需要手工防注入,所以可以重点查看
 ```
 
-### 2.2Mybatis审计策略
-#### 2.2.1Mybatis常规审计策略
+## 2.2Mybatis审计策略
+### 2.2.1Mybatis常规审计策略
 
 ```plain
 注: 在Mybatis中,${}是字符串替换,#{}是预编译技术,所以${}等于字符串拼接
@@ -78,7 +78,7 @@ public interface UsersMapper {
 </select>
 ```
 
-#### 2.2.2Mybatis审计额外知识
+### 2.2.2Mybatis审计额外知识
 
 ```plain
 Mybatis审计额外知识:
@@ -120,7 +120,7 @@ LIMIT语句,直接使用#{}会爆错,所以很多研发会为了方便采用${}�
 假设现在f参数值为1,经过#{}替换后会转换成LIMIT '1',数据库直接就爆错了
 ```
 
-### 2.3方便快速审计的函数/字符串
+## 2.3方便快速审计的函数/字符串
 
 ```plain
 方便快速审计的函数/字符串
@@ -243,10 +243,10 @@ if (!offset.matches("[0-9]+")) {
 ```
 
 ## 4.示例
-### 4.1概述
+## 4.1概述
 本示例列举了Java代码审计中常见的注入点,读者们可以根据示例来学习该漏洞,并进行举一反三
 
-### 4.2测试环境目录
+## 4.2测试环境目录
 
 ```plain
 // 目录结构
@@ -290,8 +290,8 @@ if (!offset.matches("[0-9]+")) {
 │ └── pom.xml
 ```
 
-### 4.3测试环境搭建
-#### 4.3.1修改pom.xml导入依赖
+## 4.3测试环境搭建
+### 4.3.1修改pom.xml导入依赖
 
 ```xml
 在建好的项目下找到pom.xml文件并打开
@@ -343,7 +343,7 @@ if (!offset.matches("[0-9]+")) {
 </dependency>
 ```
 
-#### 4.3.2创建数据表
+### 4.3.2创建数据表
 
 ```plain
 // 第一步
@@ -367,7 +367,7 @@ INSERT INTO student (`name`, `age`) VALUES ("XiaoMing", 19);
 INSERT INTO student (`name`, `age`) VALUES ("XiaoChen", 22);
 ```
 
-#### 4.3.3测试类创建
+### 4.3.3测试类创建
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/mapper/Student.java
@@ -439,7 +439,7 @@ public interface IStudentDao {
 }
 ```
 
-#### 4.3.4配置SpringJdbc数据源
+### 4.3.4配置SpringJdbc数据源
 
 ```plain
 // 第一步
@@ -479,7 +479,7 @@ jdbc.password=Zaq123456789!!!a
 </bean>
 ```
 
-#### 4.3.5配置hibernate
+### 4.3.5配置hibernate
 
 ```xml
 <!-- 创建新文件 -->
@@ -516,7 +516,7 @@ jdbc.password=Zaq123456789!!!a
 </hibernate-configuration>
 ```
 
-#### 4.3.6配置mybatis
+### 4.3.6配置mybatis
 
 ```xml
 <!-- 创建新文件 -->
@@ -546,8 +546,8 @@ jdbc.password=Zaq123456789!!!a
 </configuration>
 ```
 
-### 4.4DriverManager
-#### 4.4.1prepareStatement()
+## 4.4DriverManager
+### 4.4.1prepareStatement()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/DriverManagerSqliTest1.java
@@ -609,9 +609,9 @@ public class DriverManagerSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260616212132](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260616212132.png)
 
-#### 4.4.2createStatement().executeQuery()
+### 4.4.2createStatement().executeQuery()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/DriverManagerSqliTest2.java
@@ -670,10 +670,10 @@ public class DriverManagerSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest2/test?name=XiaoMing'or sleep(5) or '
 ```
 
-*（配图略）*
+![pasted image 20260616212157](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260616212157.png)
 
-### 4.5JdbcTemplate
-#### 4.5.1execute()
+## 4.5JdbcTemplate
+### 4.5.1execute()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/JdbcTemplateSqliTest1.java
@@ -713,9 +713,9 @@ public class JdbcTemplateSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260703181538](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181538.png)
 
-#### 4.5.2query()
+### 4.5.2query()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/JdbcTemplateSqliTest2.java
@@ -765,9 +765,9 @@ public class JdbcTemplateSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260703181558](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181558.png)
 
-#### 4.5.3二次注入示例
+### 4.5.3二次注入示例
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/JdbcTemplateSqliTest3.java
@@ -850,16 +850,16 @@ public class JdbcTemplateSqliTest3 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/add?name=test%'or sleep(3) or'&age=22
 ```
 
-*（配图略）*
+![pasted image 20260703181626](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181626.png)
 
 
 ```plain
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/test?id=3
 ```
 
-*（配图略）*
-### 4.6Hibernate
-#### 4.6.1Hibernate-HQL-createQuery()
+![pasted image 20260703181635](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181635.png)
+## 4.6Hibernate
+### 4.6.1Hibernate-HQL-createQuery()
 
 ```xml
 <!-- 第一步 -->
@@ -916,16 +916,16 @@ public class HibernateHQLSqliTest {
 正常访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing
 ```
 
-*（配图略）*
+![pasted image 20260703173012](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173012.png)
 
 
 ```plain
 恶意访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing'or name like'%
 ```
 
-*（配图略）*
+![pasted image 20260703173030](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173030.png)
 
-#### 4.6.2Hibernate-NativeSQL-createSQLQuery()
+### 4.6.2Hibernate-NativeSQL-createSQLQuery()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/HibernateNativeSQLSqliTest1.java
@@ -966,9 +966,9 @@ public class HibernateNativeSQLSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260703173044](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173044.png)
 
-#### 4.6.3Hibernate-NativeSQL-createNativeQuery()
+### 4.6.3Hibernate-NativeSQL-createNativeQuery()
 
 ```java
 // 路径: ./SpringMVCTest2/src/main/com/test/controller/sqli/HibernateNativeSQLSqliTest2,java
@@ -1010,10 +1010,10 @@ public class HibernateNativeSQLSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260703173056](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173056.png)
 
-### 4.7Mybatis
-#### 4.7.1Annotation示例
+## 4.7Mybatis
+### 4.7.1Annotation示例
 
 ```xml
 <!-- 第一步 -->
@@ -1075,9 +1075,9 @@ public class MybatisSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest1/test?name=XiaoMing%'or sleep(5) or'
 ```
 
-*（配图略）*
+![pasted image 20260703173111](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173111.png)
 
-#### 4.7.2XML示例
+### 4.7.2XML示例
 
 ```xml
 <!-- 第一步 -->
@@ -1159,5 +1159,5 @@ public class MybatisSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest2/test?f=1 RLIKE sleep(5)
 ```
 
-*（配图略）*
+![pasted image 20260703173132](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173132.png)
 
