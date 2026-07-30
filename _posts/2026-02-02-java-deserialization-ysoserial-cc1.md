@@ -365,7 +365,7 @@ Java 动态代理-JDK原生: [https://www.yuque.com/pmiaowu/gpy1q8/ze4mgq](https
 ## 0x06.2 四答
 ### 第一个问题答案:
 对应POC代码`Map outerMap = LazyMap.decorate(innerMap, transformerChain);`
-![pasted image 20260703172817](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172817.png)
+![pasted image 20260703172817](/assets/img/posts/2026-02-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172817.png)
 
 只是单纯的赋值操作
 
@@ -474,11 +474,11 @@ POC执行反序列化的时候,会先执行`AnnotationInvocationHandler`类的`r
 
 
 debug流程如下:
-![pasted image 20260703172831](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172831.png)
+![pasted image 20260703172831](/assets/img/posts/2026-02-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172831.png)
 
-![pasted image 20260703172838](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172838.png)
+![pasted image 20260703172838](/assets/img/posts/2026-02-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172838.png)
 
-![pasted image 20260703172846](/assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172846.png)
+![pasted image 20260703172846](/assets/img/posts/2026-02-02-java-deserialization-ysoserial-cc1/pasted-image-20260703172846.png)
 
 ## 0x07 结尾
 CC1在jdk1.7u21、jdk1.8_101、jdk1.8_171时,都是可用的(网上的大佬说的,我照抄)  

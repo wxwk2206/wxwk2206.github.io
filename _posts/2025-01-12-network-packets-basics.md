@@ -61,33 +61,33 @@ tags: [数据包, 网络, TCP, UDP]
 + HTTPS 会加密数据包内容，无法直接查看
 
 ## Request请求数据包
-![pasted image 20260702203047](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203047.png)
+![pasted image 20260702203047](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203047.png)
 
 ## 1.请求行
-![pasted image 20260702203052](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203052.png)
+![pasted image 20260702203052](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203052.png)
 
 最常用：get和post
 
 ## 2.请求头
-![pasted image 20260702203058](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203058.png)
+![pasted image 20260702203058](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203058.png)
 
-![pasted image 20260702203106](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203106.png)
+![pasted image 20260702203106](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203106.png)
 
-![pasted image 20260702203112](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203112.png)
+![pasted image 20260702203112](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203112.png)
 
 ## 3.空行
-![pasted image 20260702203120](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203120.png)
+![pasted image 20260702203120](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203120.png)
 
 **get 请求也必须有空行！！！**
 
 ## 4.请求数据（请求体）
-![pasted image 20260702203142](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203142.png)
+![pasted image 20260702203142](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203142.png)
 
 ## Response返回数据包
-![pasted image 20260702203148](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203148.png)
+![pasted image 20260702203148](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203148.png)
 
-![pasted image 20260702203153](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203153.png)
+![pasted image 20260702203153](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203153.png)
 
-![pasted image 20260702203203](/assets/img/posts/2026-01-12-network-packets-basics/pasted-image-20260702203203.png)
+![pasted image 20260702203203](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203203.png)
 
 

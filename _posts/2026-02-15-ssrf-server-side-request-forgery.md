@@ -225,7 +225,7 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260616211633](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211633.png)
+![pasted image 20260616211633](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211633.png)
 
 ```
 // 利用file协议查看文件
@@ -241,13 +241,13 @@ Connection: close
 ```
 
 查看 C:Windows/win.ini
-![pasted image 20260616211654](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211654.png)
+![pasted image 20260616211654](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211654.png)
 
 查看 my.ini
-![pasted image 20260616211702](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211702.png)
+![pasted image 20260616211702](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211702.png)
 
 查看 web.xml
-![pasted image 20260616211707](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211707.png)
+![pasted image 20260616211707](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211707.png)
 
 ## 9.3HttpURLConnection-内网探测
 **HttpURLConnection: 只能走HTTP或是HTTPS协议**
@@ -308,9 +308,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260616211716](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211716.png)
+![pasted image 20260616211716](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211716.png)
 
-![pasted image 20260616211722](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211722.png)
+![pasted image 20260616211722](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211722.png)
 
 ## 9.4JSTL-<c:import>读取文件与SSRF
 
@@ -356,6 +356,6 @@ http://127.0.0.1:8081/SpringMVCTest2_war/ssrf/ssrfTest3.jsp?pathName=file:///C:/
 http://127.0.0.1:8081/SpringMVCTest2_war/ssrf/ssrfTest3.jsp?pathName=http://127.0.0.1:8081
 ```
 
-![pasted image 20260616211731](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211731.png)
+![pasted image 20260616211731](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211731.png)
 
-![pasted image 20260616211737](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211737.png)
+![pasted image 20260616211737](/assets/img/posts/2026-02-15-ssrf-server-side-request-forgery/pasted-image-20260616211737.png)

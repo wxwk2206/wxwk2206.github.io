@@ -609,7 +609,7 @@ public class DriverManagerSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-![pasted image 20260616212132](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260616212132.png)
+![pasted image 20260616212132](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260616212132.png)
 
 ### 4.4.2createStatement().executeQuery()
 
@@ -670,7 +670,7 @@ public class DriverManagerSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest2/test?name=XiaoMing'or sleep(5) or '
 ```
 
-![pasted image 20260616212157](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260616212157.png)
+![pasted image 20260616212157](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260616212157.png)
 
 ## 4.5JdbcTemplate
 ### 4.5.1execute()
@@ -713,7 +713,7 @@ public class JdbcTemplateSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-![pasted image 20260703181538](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181538.png)
+![pasted image 20260703181538](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703181538.png)
 
 ### 4.5.2query()
 
@@ -765,7 +765,7 @@ public class JdbcTemplateSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
-![pasted image 20260703181558](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181558.png)
+![pasted image 20260703181558](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703181558.png)
 
 ### 4.5.3二次注入示例
 
@@ -850,14 +850,14 @@ public class JdbcTemplateSqliTest3 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/add?name=test%'or sleep(3) or'&age=22
 ```
 
-![pasted image 20260703181626](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181626.png)
+![pasted image 20260703181626](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703181626.png)
 
 
 ```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/test?id=3
 ```
 
-![pasted image 20260703181635](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181635.png)
+![pasted image 20260703181635](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703181635.png)
 ## 4.6Hibernate
 ### 4.6.1Hibernate-HQL-createQuery()
 
@@ -916,14 +916,14 @@ public class HibernateHQLSqliTest {
 正常访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing
 ```
 
-![pasted image 20260703173012](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173012.png)
+![pasted image 20260703173012](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173012.png)
 
 
 ```
 恶意访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing'or name like'%
 ```
 
-![pasted image 20260703173030](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173030.png)
+![pasted image 20260703173030](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173030.png)
 
 ### 4.6.2Hibernate-NativeSQL-createSQLQuery()
 
@@ -966,7 +966,7 @@ public class HibernateNativeSQLSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
-![pasted image 20260703173044](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173044.png)
+![pasted image 20260703173044](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173044.png)
 
 ### 4.6.3Hibernate-NativeSQL-createNativeQuery()
 
@@ -1010,7 +1010,7 @@ public class HibernateNativeSQLSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
-![pasted image 20260703173056](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173056.png)
+![pasted image 20260703173056](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173056.png)
 
 ## 4.7Mybatis
 ### 4.7.1Annotation示例
@@ -1075,7 +1075,7 @@ public class MybatisSqliTest1 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest1/test?name=XiaoMing%'or sleep(5) or'
 ```
 
-![pasted image 20260703173111](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173111.png)
+![pasted image 20260703173111](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173111.png)
 
 ### 4.7.2XML示例
 
@@ -1159,5 +1159,5 @@ public class MybatisSqliTest2 {
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest2/test?f=1 RLIKE sleep(5)
 ```
 
-![pasted image 20260703173132](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173132.png)
+![pasted image 20260703173132](/assets/img/posts/2026-01-05-sql-injection/pasted-image-20260703173132.png)
 

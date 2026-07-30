@@ -101,9 +101,9 @@ java.lang.reflect.Method#invoke方法
 访问url: http://127.0.0.1:8081/SpringMVCtest_war/runtime-exec-test.jsp?cmd=whoami
 ```
 
-![pasted image 20260618083904](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083904.png)
+![pasted image 20260618083904](/assets/img/posts/2026-05-01-rce-command-execution/pasted-image-20260618083904.png)
 
-![pasted image 20260618083912](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083912.png)
+![pasted image 20260618083912](/assets/img/posts/2026-05-01-rce-command-execution/pasted-image-20260618083912.png)
 
 ## 0x04.4 reflection(反射调用)
 ### 0x04.4.1 测试环境搭建
@@ -162,6 +162,6 @@ java.lang.reflect.Method#invoke方法
 http://127.0.0.1:8081/SpringMVCtest_war/reflection-rce-test.jsp?name=java.lang.Runtime&method=exec&str=whoami
 ```
 
-![pasted image 20260618083936](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083936.png)
+![pasted image 20260618083936](/assets/img/posts/2026-05-01-rce-command-execution/pasted-image-20260618083936.png)
 
-![pasted image 20260618083932](/assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083932.png)
+![pasted image 20260618083932](/assets/img/posts/2026-05-01-rce-command-execution/pasted-image-20260618083932.png)

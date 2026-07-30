@@ -136,7 +136,7 @@ console.log('\n权限检查 checkAdmin({}):', checkAdmin({}));
 // → true！攻击成功！
 ```
 
-![pasted image 20260622182233](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182233.png)
+![pasted image 20260622182233](/assets/img/posts/2026-04-18-prototype-pollution-practice/pasted-image-20260622182233.png)
 > **⚠️ 重点**  注意一个细节
 > defaultConfig.features.admin 还是 false！为什么？因为 features 对象自身有 admin: false 属性，属性查找时**自身属性优先**，不会去原型链找。但新建的空对象 {} 没有自身 admin，就会顺着原型链查到 true。这就是为什么新建用户的权限检查会被绕过。
 
@@ -173,7 +173,7 @@ console.log('数组 [].isAdmin:', [].isAdmin);
 console.log('\n攻击成功！__proto__ 过滤被绕过！');
 ```
 
-![pasted image 20260622182810](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182810.png)
+![pasted image 20260622182810](/assets/img/posts/2026-04-18-prototype-pollution-practice/pasted-image-20260622182810.png)
 ## 5.修复方案对比
 ## 5.1 方案一：过滤危险键名
 
@@ -281,7 +281,7 @@ console.log('{}.isAdmin:', {}.isAdmin);  // → undefined ✅
 console.log('\n修复成功！两种攻击都被拦截！');
 ```
 
-![pasted image 20260622184008](/assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622184008.png)
+![pasted image 20260622184008](/assets/img/posts/2026-04-18-prototype-pollution-practice/pasted-image-20260622184008.png)
 ## 7.真实 CVE 案例：lodash.merge
 
 > **⚠️ 重点**  CVE-2018-3721 / CVE-2020-8203：lodash 原型链污染

