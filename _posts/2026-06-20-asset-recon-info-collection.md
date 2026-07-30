@@ -12,7 +12,7 @@ tags: [信息收集, 资产收集, fofa, 测绘, 侦察]
 ## 常用引擎
 
 | 引擎 | 地址 | 特点 |
-|------|------|------|
+|---|---|---|
 | Fofa | https://fofa.info | 国内最常用，语法丰富 |
 | Shodan | https://www.shodan.io | 全球最大，API 功能强 |
 | Zoomeye | https://www.zoomeye.org | 知道创宇出品 |
@@ -215,7 +215,7 @@ cd GooFuzz
 ## 工具选择
 
 | 工具 | 特点 | 适用场景 |
-|------|------|----------|
+|---|---|---|
 | ksubdomain | 无状态爆破，速度最快 | 大量目标快速爆破 |
 | subfinder | 被动收集为主，主动为辅 | 常规资产发现 |
 | puredns | 精准解析，去泛解析效果好 | 需要准确结果时 |
@@ -406,7 +406,7 @@ https://mail.example.com, mail.example.com, 3.3.3.3
 ## 平台选择
 
 | 平台 | 地址 | 特点 |
-|------|------|------|
+|---|---|---|
 | 爱企查 | https://aiqicha.baidu.com | 百度系，免费额度较多 |
 | 天眼查 | https://www.tianyancha.com | 数据全面，API 收费 |
 | 企查查 | https://www.qcc.com | 老牌平台 |

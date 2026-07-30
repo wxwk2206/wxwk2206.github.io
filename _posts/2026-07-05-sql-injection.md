@@ -7,7 +7,7 @@ tags: [sql注入, 注入, 数据库, OWASP]
 
 ## 1.漏洞成因
 
-```plain
+```
 SQL注入的本质是因为,用户的可控参数,未过滤/过滤不严格,又将参数通过字符串拼接的方式带入到SQL语句中
 攻击者可以通过SQL注入,获取数据库信息/GetShell/命令执行
 ```
@@ -15,7 +15,7 @@ SQL注入的本质是因为,用户的可控参数,未过滤/过滤不严格,又�
 ## 2.审计策略
 ## 2.1常规情况下审计策略
 
-```plain
+```
 审计策略一: 
 定位SQL语句上下文,查看该语句是否有参数直接进行SQL拼接,该语句是否有对参数进行过滤
 示例:
@@ -23,7 +23,7 @@ String SQL1 = "SELECT * FROM student WHERE id = " + id;
 Connection.prepareStatement(SQL1);
 ```
 
-```plain
+```
 审计策略二:
 定位SQL语句上下文,查看该语句是否使用预编译技术,该语句是否全部参数都使用了预编译技术
 示例:
@@ -31,7 +31,7 @@ String SQL2 = "UPDATE student SET name = ?, age = ? WHERE id = " + id;
 JdbcTemplate.update(SQL2, new Object[]{"小陈", 25});
 ```
 
-```plain
+```
 审计策略三:
 对于二次注入的审计策略大致如下
 定位SQL语句上下文,查看SQL拼接的参数是否为数据库查询带入的,如果是,判断该参数是否外部可控与未转义
@@ -48,7 +48,7 @@ JdbcTemplate.update(SQL2, new Object[]{"小陈", 25});
 然后直接从数据库中取出了脏数据,没有进行过滤,直接字符串拼接到新的SQL进行查询,这样就会造成二次注入
 ```
 
-```plain
+```
 审计策略四:
 定位SQL语句上下文,查找使用了ORDER BY语法的SQL语句,并且拥有外部可控的参数
 查看是否做了字段限制,这种地方框架是没法使用预编译,需要手工防注入,所以可以重点查看
@@ -57,7 +57,7 @@ JdbcTemplate.update(SQL2, new Object[]{"小陈", 25});
 ## 2.2Mybatis审计策略
 ### 2.2.1Mybatis常规审计策略
 
-```plain
+```
 注: 在Mybatis中,${}是字符串替换,#{}是预编译技术,所以${}等于字符串拼接
 
 审计策略一:
@@ -80,7 +80,7 @@ public interface UsersMapper {
 
 ### 2.2.2Mybatis审计额外知识
 
-```plain
+```
 Mybatis审计额外知识:
 
 Mybatis推荐建议尽量使用#{},但是#{}并不是万能的,没有办法每个地方都使用
@@ -122,7 +122,7 @@ LIMIT语句,直接使用#{}会爆错,所以很多研发会为了方便采用${}�
 
 ## 2.3方便快速审计的函数/字符串
 
-```plain
+```
 方便快速审计的函数/字符串
 查找这些函数/字符串上的SQL语句,判断是否进行了SQL拼接就可以快速审计出是否有漏洞了
 例如:IDEA搜索“executeQuery(”然后查看SQL判断是否有注入
@@ -176,7 +176,7 @@ Mybatis(对着xml文件搜索):
 
 ## 3.修复方法
 
-```plain
+```
 习惯性的使用预编译技术,不进行SQL语句字符串拼接
 遇到实在无法使用预编译技术的地方,可以按照如下的思路进行过滤
 
@@ -248,7 +248,7 @@ if (!offset.matches("[0-9]+")) {
 
 ## 4.2测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -345,7 +345,7 @@ if (!offset.matches("[0-9]+")) {
 
 ### 4.3.2创建数据表
 
-```plain
+```
 // 第一步
 // 打开MySQL,新建个test数据库
 // 创建test数据库的SQL语句
@@ -441,7 +441,7 @@ public interface IStudentDao {
 
 ### 4.3.4配置SpringJdbc数据源
 
-```plain
+```
 // 第一步
 // 添加JDBC配置
 // 目录: ./SpringMVCTest2/src/main/resources/config/
@@ -605,7 +605,7 @@ public class DriverManagerSqliTest1 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
@@ -666,7 +666,7 @@ public class DriverManagerSqliTest2 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/DriverManagerSqliTest2/test?name=XiaoMing'or sleep(5) or '
 ```
 
@@ -709,7 +709,7 @@ public class JdbcTemplateSqliTest1 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
@@ -761,7 +761,7 @@ public class JdbcTemplateSqliTest2 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
@@ -846,14 +846,14 @@ public class JdbcTemplateSqliTest3 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/add?name=test%'or sleep(3) or'&age=22
 ```
 
 ![pasted image 20260703181626](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703181626.png)
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/JdbcTemplateSqliTest3/test?id=3
 ```
 
@@ -912,14 +912,14 @@ public class HibernateHQLSqliTest {
 
 
 
-```plain
+```
 正常访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing
 ```
 
 ![pasted image 20260703173012](/assets/img/posts/2026-07-05-sql-injection/pasted-image-20260703173012.png)
 
 
-```plain
+```
 恶意访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateHQLSqliTest/test?name=XiaoMing'or name like'%
 ```
 
@@ -962,7 +962,7 @@ public class HibernateNativeSQLSqliTest1 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest1/test?name=XiaoMing'or sleep(5) or'
 ```
 
@@ -1006,7 +1006,7 @@ public class HibernateNativeSQLSqliTest2 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/HibernateNativeSQLSqliTest2/test?name=XiaoMing'or sleep(5) or'
 ```
 
@@ -1071,7 +1071,7 @@ public class MybatisSqliTest1 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest1/test?name=XiaoMing%'or sleep(5) or'
 ```
 
@@ -1155,7 +1155,7 @@ public class MybatisSqliTest2 {
 
 
 
-```plain
+```
 访问: http://127.0.0.1:8081/SpringMVCTest2_war/MybatisSqliTest2/test?f=1 RLIKE sleep(5)
 ```
 

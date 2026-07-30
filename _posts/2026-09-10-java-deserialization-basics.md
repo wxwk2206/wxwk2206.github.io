@@ -7,7 +7,7 @@ tags: [反序列化, java, 序列化, 代码审计]
 
 ## <font style="color:rgb(0, 0, 0);">1 漏洞成因</font>
 
-```plain
+```
 在业务中可能会存在特殊业务需要使用到反序列化的功能(例如:日志格式化存储,对象数据落地到磁盘,等...)
 
 因此如果反序列化的数据外部可控,并且未过滤,那么攻击者就可以通过构造恶意的反序列化数据
@@ -19,7 +19,7 @@ tags: [反序列化, java, 序列化, 代码审计]
 
 ## 2 序列化的应用场景
 
-```plain
+```
 以下为作者知道的应用场景:
 1. 通过序列化将Java对象的字节序列保存到本地文件或者数据库中,保证对象永久性不丢失,提高系统QPS
 2. 通过序列化将Java对象以字节流的形式在网络中进行传递和接收
@@ -27,7 +27,7 @@ tags: [反序列化, java, 序列化, 代码审计]
 4. 通过序列化实现在进程间传递Java对象
 ```
 
-```plain
+```
 序列化应用场景的示例一:
 tomcat服务器会在服务器关闭时把session序列化
 存储到tomcat目录一个名为session.ser的文件中,这个过程称为session的钝化，
@@ -38,7 +38,7 @@ tomcat服务器会在服务器关闭时把session序列化
 该示例引用的知乎:https://www.zhihu.com/question/34920481
 ```
 
-```plain
+```
 序列化应用场景的示例二:
 最常用的就是Java项目中session操作了
 假设我们登录完毕以后需要设置session保存用户的各种信息,方便系统进行登录态的检查
@@ -53,7 +53,7 @@ tomcat服务器会在服务器关闭时把session序列化
 ## 3 审计策略
 ## 3.1 其它情况下审计策略
 
-```plain
+```
 审计策略一:
 使用Wireshark对数据包进行分析,Java序列化数据的前4个字节为“ac ed 00 05”
 然后使用“tcp contains ac:ed:00:05”条件过滤出包含Java序列化数据的数据包
@@ -71,7 +71,7 @@ tomcat服务器会在服务器关闭时把session序列化
 
 ## 3.2 方便快速审计的污点跟踪类
 
-```plain
+```
 在代码审计前如果有pom.xml文件,可优先查看pom.xml文件
 没有的话就直接通过jar文件进行,比对分析是否出现了漏洞组件
 如果涉及到以下类方法/对应库,并且外部可控,则考虑Java反序列化漏洞
@@ -121,7 +121,7 @@ org.springframework:spring-aop4.1.4.RELEASE
 
 ## 4 额外知识-第三方类库搜索CVE
 
-```plain
+```
 对于一些第三方的库,比如Fastjson,Yaml,XStream,Jackson....
 如果想知道它们目前是否有公开可以的漏洞可以使用该方法
 1. 查看自己手上源码的第三方类库的版本,比如Fastjson-1.2.47
@@ -137,7 +137,7 @@ org.springframework:spring-aop4.1.4.RELEASE
 
 ## 5 修复方法
 
-```plain
+```
 修复方法一:
 重写ObjectInputStream#resolveClass方法,resolveClass方法会在readObject方法前自动触发
 通过重写resolveClass方法,来读取类名,从而实现黑/白名单校验,禁止超出预期的类进行反序列化
@@ -152,13 +152,13 @@ org.springframework:spring-aop4.1.4.RELEASE
 ## 6 示例
 ## 6.1 概述
 
-```plain
+```
 本示例列举了Java代码审计中最基础的反序列化环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
 ## 6.2 测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -236,7 +236,7 @@ public class DeserializeTest {
 ## 6.4 反序列化攻击测试
 ### 6.4.1 生成攻击payload
 
-```plain
+```
 实战利用推荐使用ysoserial
 下载地址主页: https://github.com/frohoff/ysoserial
 下载地址: https://github.com/frohoff/ysoserial/tags 下载一个最新的tags即可
@@ -303,7 +303,7 @@ public class UrlDnsTest {
 
 ### 6.4.2 普通反序列化攻击
 
-```plain
+```
 // 反序列化攻击数据包
 POST /SpringMVCtest_war/DeserializeTest/commonDeserializeTest HTTP/1.1
 Host: 127.0.0.1:8081
@@ -322,7 +322,7 @@ Content-Length: 269
 
 ### 6.4.3 Base64反序列化攻击
 
-```plain
+```
 // 反序列化攻击数据包
 POST /SpringMVCtest_war/DeserializeTest/base64DeserializeTest HTTP/1.1
 Host: 127.0.0.1:8081

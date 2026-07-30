@@ -7,14 +7,14 @@ tags: [rce, 命令执行, 远程代码执行, java]
 
 ## <font style="color:rgb(0, 0, 0);">  0x01 漏洞成因</font>
 
-```plain
+```
 在业务中可能会存在特殊业务需要使用到执行系统命令的功能(例如:该产品为堡垒机)
 如果执行的命令外部可控,那么则将产生极大的危害
 ```
 
 ## 0x02 审计策略
 
-```plain
+```
 对于这种漏洞,重点关注能执行命令的一些功能及函数,然后查看是否外部可控即可:
 
 常规命令执行:
@@ -31,20 +31,20 @@ java.lang.reflect.Method#invoke方法
 
 ## 0x03 修复方法
 
-```plain
+```
 系统中避免使用这样的功能,如果必须使用能命令执行的功能,也一定要经过转义在带入命令中
 ```
 
 ## 0x04 例子
 ## 0x04.1 概述
 
-```plain
+```
 本示例列举了Java代码审计中最基础的命令执行环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
 ## 0x04.2 测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -68,7 +68,7 @@ java.lang.reflect.Method#invoke方法
 ## 0x04.3 runtime
 ### 0x04.3.1 测试环境搭建
 
-```plain
+```
 <%-- 路径: ./SpringMVCtest/src/main/webapp/runtime-exec-test.jsp --%>
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
@@ -97,7 +97,7 @@ java.lang.reflect.Method#invoke方法
 
 ### 0x04.3.2 漏洞测试
 
-```plain
+```
 访问url: http://127.0.0.1:8081/SpringMVCtest_war/runtime-exec-test.jsp?cmd=whoami
 ```
 
@@ -108,7 +108,7 @@ java.lang.reflect.Method#invoke方法
 ## 0x04.4 reflection(反射调用)
 ### 0x04.4.1 测试环境搭建
 
-```plain
+```
 <%-- 路径: ./SpringMVCTest2/src/main/webapp/reflection-rce-test.jsp --%>
 <%-- name为请求的类 --%>
 <%-- method为请求类的方法 --%>
@@ -158,7 +158,7 @@ java.lang.reflect.Method#invoke方法
 
 ### 0x04.4.2 漏洞测试
 
-```plain
+```
 http://127.0.0.1:8081/SpringMVCtest_war/reflection-rce-test.jsp?name=java.lang.Runtime&method=exec&str=whoami
 ```
 

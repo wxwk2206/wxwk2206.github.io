@@ -240,7 +240,7 @@ fiddler中，拦截状态下重发一个数据包，拦截一个加一次空格�
 ## 常见参数观察清单
 
 | 类型 | 常见字段 | 重点问题 |
-| --- | --- | --- |
+|---|---|---|
 | 用户身份 | `uid`、`userId`、`memberId`、`sellerId`、`buyerId` | 是否可替换为他人 ID |
 | 活动营销 | `activityId`、`couponId`、`redPacketId`、`prizeId` | 是否能领隐藏活动或重复领取 |
 | 订单交易 | `orderId`、`addressId`、`payStatus`、`status` | 是否校验归属和状态 |

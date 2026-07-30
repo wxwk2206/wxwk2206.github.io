@@ -18,7 +18,7 @@ tags: [ssrf, 服务端请求伪造, 内网穿透]
 
 ## 2.漏洞描述
 
-```plain
+```
 服务端请求伪造 (Server-Side Request Forgery)
 由攻击者构造带有攻击的请求传给服务器执行造成的漏洞
 一般是使用它在外网探测数据或是攻击内网服务
@@ -26,7 +26,7 @@ tags: [ssrf, 服务端请求伪造, 内网穿透]
 
 ## 3.漏洞作用
 
-```plain
+```
 1. 内网ip/端口扫描
 2. 服务器敏感数据读取
 3. 内网主机应用程序漏洞利用
@@ -35,13 +35,13 @@ tags: [ssrf, 服务端请求伪造, 内网穿透]
 
 ## 4.支持的伪协议
 
-```plain
+```
 Java中支持的伪协议:file,ftp,http,https,jar,mailto,netdoc
 ```
 
 ## 5.审计策略
 
-```plain
+```
 常见的容易出现SSRF的功能有:
 1. 社交分享功能: 获取超链接的标题等内容进行显示
 2. 图片加载/下载: 富文本编辑器中的点击下载图片到本地,通过URL地址加载或下载图片
@@ -49,7 +49,7 @@ Java中支持的伪协议:file,ftp,http,https,jar,mailto,netdoc
 4. 开发平台接口测试工具: 一些公司会把自己的一些接口开放出来,形成第三方接口
 ```
 
-```plain
+```
 想找SSRF的时候可以找找这些类的,URL输入点,是否外部可控
 
 java.net.URI
@@ -74,7 +74,7 @@ org.apache.http.client.methods.HttpRequestBase
 
 ## 6.修复方法
 
-```plain
+```
 1. 禁止内网请求
 例如: 
 根据内网的ip分布情况
@@ -98,7 +98,7 @@ Inet6Address类的isSiteLocalAddress()
 ## 一、Windows 系统
 
 | **文件路径** | **用途与敏感信息** |
-| :--- | :--- |
+|:---|:---|
 | `file:///C:/Windows/win.ini` | 系统兼容配置文件，**用于确认系统为 Windows** |
 | `file:///C:/Windows/System32/drivers/etc/hosts` | 本地域名解析文件，可泄露内网 IP 与域名映射 |
 | `file:///C:/Windows/system.ini` | 早期系统配置，包含硬件 / 驱动相关信息 |
@@ -116,7 +116,7 @@ Inet6Address类的isSiteLocalAddress()
 ## 二、Linux 系统
 
 | **文件路径** | **用途与敏感信息** |
-| :--- | :--- |
+|:---|:---|
 | `file:///etc/passwd` | 系统用户信息（用户名、UID、GID、家目录等） |
 | `file:///etc/shadow` | 系统用户密码哈希（需 root 权限） |
 | `file:///etc/hosts` | 本地域名解析，泄露内网 IP / 域名 |
@@ -136,7 +136,7 @@ Inet6Address类的isSiteLocalAddress()
 ## 三、Java/Tomcat 应用通用敏感文件
 
 | **文件路径** | **用途与敏感信息** |
-| :--- | :--- |
+|:---|:---|
 | `file:///WEB-INF/web.xml` | Web 应用核心配置，含 Servlet、过滤器定义 |
 | `file:///WEB-INF/classes/application.properties` | Spring Boot 配置，含数据库、Redis 等密码 |
 | `file:///WEB-INF/classes/jdbc.properties` | 数据库连接配置，含账号密码 |
@@ -146,7 +146,7 @@ Inet6Address类的isSiteLocalAddress()
 ## 9.例子
 ## 9.1测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -213,7 +213,7 @@ Inet6Address类的isSiteLocalAddress()
 
 
 
-```plain
+```
 // 利用http/https访问站点
 // 如果访问成功就会返回数据
 // 例如:
@@ -227,7 +227,7 @@ Connection: close
 
 ![pasted image 20260616211633](/assets/img/posts/2026-08-15-ssrf-server-side-request-forgery/pasted-image-20260616211633.png)
 
-```plain
+```
 // 利用file协议查看文件
 // 如果访问成功就会返回数据
 // 例如: 
@@ -252,7 +252,7 @@ Connection: close
 ## 9.3HttpURLConnection-内网探测
 **HttpURLConnection: 只能走HTTP或是HTTPS协议**
 
-```plain
+```
 // 漏洞环境搭建
 // 目录: ./SpringMVCTest2/src/main/webapp/ssrf/ssrfTest2.jsp
 <%@ page import="java.net.URL" %>
@@ -296,7 +296,7 @@ Connection: close
 
 
 
-```plain
+```
 // 利用http/https访问站点
 // 如果访问成功就会返回数据
 // 例如:
@@ -340,7 +340,7 @@ Connection: close
 </dependency>
 ```
 
-```plain
+```
 <%-- 路径: ./SpringMVCTest2/src/main/webapp/ssrf/ssrfTest3.jsp --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -348,7 +348,7 @@ Connection: close
 <c:import url="<%=pathName%>"></c:import>
 ```
 
-```plain
+```
 // 读取文件
 http://127.0.0.1:8081/SpringMVCTest2_war/ssrf/ssrfTest3.jsp?pathName=file:///C:/Windows/win.ini
 

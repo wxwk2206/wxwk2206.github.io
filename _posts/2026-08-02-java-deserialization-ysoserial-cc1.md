@@ -120,7 +120,7 @@ public class CommonsCollections1 extends PayloadRunner implements ObjectPayload<
 
 [https://github.com/pmiaowu/DeserializationTest](https://github.com/pmiaowu/DeserializationTest)
 
-```plain
+```
 编辑器为: IntelliJ IDEA
 
 java版本:
@@ -220,7 +220,7 @@ public class CommonCollections1Test4 {
 ## 0x04 利用链过程
 ysoserial 源码的注释中给出了利用链的过程如下:
 
-```plain
+```
 Gadget chain:
     ObjectInputStream.readObject()
         AnnotationInvocationHandler.readObject()
