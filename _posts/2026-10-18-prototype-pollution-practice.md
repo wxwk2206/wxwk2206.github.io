@@ -1,6 +1,6 @@
 ---
 title: "原型链污染实战：从 property 到 RCE 的前端纵深"
-date: 2026-10-18 12:00:00 +0800
+date: 2026-04-18 12:00:00 +0800
 categories: [前端安全, JavaScript]
 tags: [原型链污染, javascript, nodejs, 前端安全]
 ---

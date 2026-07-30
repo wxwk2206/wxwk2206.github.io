@@ -1,6 +1,6 @@
 ---
 title: "JNDI 注入攻击：Log4Shell 同源的那条利用链"
-date: 2026-09-22 12:00:00 +0800
+date: 2026-03-22 12:00:00 +0800
 categories: [Java安全, 代码审计]
 tags: [jndi, 注入, log4j, java, lookup]
 ---

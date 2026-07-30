@@ -1,6 +1,6 @@
 ---
 title: "Java 反序列化基础：从 ObjectOutputStream 到任意代码执行"
-date: 2026-09-10 12:00:00 +0800
+date: 2026-03-10 12:00:00 +0800
 categories: [Java安全, 反序列化]
 tags: [反序列化, java, 序列化, 代码审计]
 ---

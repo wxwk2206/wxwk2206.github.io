@@ -1,6 +1,6 @@
 ---
 title: "Java 反序列化利用链：手撕 ysoserial CommonsCollections1"
-date: 2026-08-02 12:00:00 +0800
+date: 2026-02-02 12:00:00 +0800
 categories: [Java安全, 代码审计]
 tags: [反序列化, ysoserial, 利用链, java, cc1]
 ---

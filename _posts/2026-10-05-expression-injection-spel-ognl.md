@@ -1,6 +1,6 @@
 ---
 title: "表达式注入：SpEL / OGNL 里的代码执行后门"
-date: 2026-10-05 12:00:00 +0800
+date: 2026-04-05 12:00:00 +0800
 categories: [Web安全, 注入]
 tags: [表达式注入, spel, ognl, 注入, el]
 ---
