@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_posts/2026-04-18-idor-basics.md",
+                "file": "_posts/2026-07-05-sql-injection.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026-04-18-idor-basics"
+              "title": "2026-07-05-sql-injection"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 432.5
   },
   "right": {
     "id": "0fb7b6fd09f425a7",
@@ -185,20 +185,40 @@
   },
   "active": "6f2c58ab0b9aab3e",
   "lastOpenFiles": [
+    "_posts/2026-06-05-business-logic-vuln-hunting.md",
+    "_posts/2026-05-10-idor-advanced-bypass.md",
+    "_posts/2026-04-18-idor-basics.md",
+    "_posts/2026-03-30-csrf.md",
+    "assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083936.png",
+    "assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083932.png",
+    "assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083912.png",
+    "assets/img/posts/2026-11-01-rce-command-execution/pasted-image-20260618083904.png",
+    "assets/img/posts/2026-11-01-rce-command-execution",
+    "assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622184008.png",
+    "assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182810.png",
+    "assets/img/posts/2026-10-18-prototype-pollution-practice/pasted-image-20260622182233.png",
+    "assets/img/posts/2026-10-18-prototype-pollution-practice",
+    "assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084642.png",
+    "assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084625.png",
+    "assets/img/posts/2026-10-05-expression-injection-spel-ognl/pasted-image-20260618084636.png",
+    "assets/img/posts/2026-10-05-expression-injection-spel-ognl",
+    "assets/img/posts/2026-09-22-jndi-injection-attack",
+    "assets/img/posts/2026-09-10-java-deserialization-basics",
+    "assets/img/posts/2026-08-28-xxe-external-entity",
+    "assets/img/posts/2026-08-15-ssrf-server-side-request-forgery",
+    "assets/img/posts/2026-08-02-java-deserialization-ysoserial-cc1",
+    "assets/img/posts/2026-07-20-ssti-template-injection",
+    "assets/img/posts/2026-07-05-sql-injection",
+    "_posts/2026-07-05-sql-injection.md",
     "_posts/2026-01-12-network-packets-basics.md",
     "_posts/2026-01-28-security-core-concepts.md",
     "_posts/2026-02-15-reflected-xss.md",
     "_posts/2026-02-28-stored-xss.md",
     "_posts/2026-03-15-dom-xss.md",
-    "_posts/2026-03-30-csrf.md",
-    "_posts/2026-04-18-idor-basics.md",
-    "_posts/2026-05-10-idor-advanced-bypass.md",
-    "_posts/2026-06-05-business-logic-vuln-hunting.md",
     "_posts/2026-06-20-asset-recon-info-collection.md",
     "_posts/模板.md",
     "_posts/2026-06-04-hello-world.md",
     "_posts/2026-06-10-C语言语法基础.md",
-    "assets/img/avatar.jpg",
     "README.md",
     "_tabs/archives.md",
     "_tabs/categories.md",
