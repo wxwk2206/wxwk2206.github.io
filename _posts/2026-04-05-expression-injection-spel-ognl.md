@@ -3,6 +3,7 @@ title: "表达式注入：SpEL / OGNL 里的代码执行后门"
 date: 2026-04-05 12:00:00 +0800
 categories: [Web安全, 注入]
 tags: [表达式注入, spel, ognl, 注入, el]
+excerpt: "SpEL、OGNL 等表达式解析在外部可控且配置有误时，会变成任意表达式执行。表达式注入的成因、审计要点与基础示例。"
 ---
 
 ## <font style="color:rgb(0, 0, 0);">1.漏洞成因</font>

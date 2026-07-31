@@ -147,7 +147,8 @@ pwa:
     deny_paths:
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
-paginate: 10
+# ⭐ 与首页布局 limit:5 对齐（原为 10，导致第 6~10 篇在分页链中丢失）
+paginate: 5
 
 # The base URL of your site
 baseurl: ""
@@ -217,6 +218,7 @@ exclude:
   - "package*.json"
   - home-preview.html      # ⭐ 首页落地预览，不参与站点构建
   - design-preview.html    # ⭐ 原始设计稿，不参与站点构建
+  - "preview-*.html"       # ⭐ 改版效果预览文件，不参与站点构建（2026-07-31）
 
 jekyll-archives:
   enabled: [categories, tags]

@@ -3,6 +3,7 @@ title: "JNDI 注入攻击：Log4Shell 同源的那条利用链"
 date: 2026-03-22 12:00:00 +0800
 categories: [Java安全, 代码审计]
 tags: [jndi, 注入, log4j, java, lookup]
+excerpt: "少讲原理、多讲利用：RMI 与 LDAP 两条攻击路径、开箱即用的 JNDI 利用工具、Fastjson 漏洞环境搭建实战。"
 ---
 
 ## 0x01 前言

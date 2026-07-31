@@ -3,6 +3,7 @@ title: "Java 反序列化基础：从 ObjectOutputStream 到任意代码执行"
 date: 2026-03-10 12:00:00 +0800
 categories: [Java安全, 反序列化]
 tags: [反序列化, java, 序列化, 代码审计]
+excerpt: "反序列化数据外部可控且未过滤，攻击者就能构造恶意对象执行任意代码——但必须配合 gadget 利用链才有真正的危害。从 ObjectOutputStream 讲起。"
 ---
 
 ## <font style="color:rgb(0, 0, 0);">1 漏洞成因</font>

@@ -4,20 +4,23 @@
    决策来源：my-grill-me 访谈（2026-06-21）
    ============================================================ */
 
-/* ── 字体声明：local 优先 + 系统 fallback ── */
+/* ── 字体声明：local 优先 + 自托管 woff2 兜底（2026-07-31 落地，访客无需预装）──
+   变量字体，latin 子集；中文按字体栈回退 PingFang/雅黑（设计意图） */
 @font-face {
   font-family: 'Geist';
   font-style: normal;
-  font-weight: 400 700;
+  font-weight: 100 900;
   font-display: swap;
-  src: local('Geist'), local('Geist Variable');
+  src: local('Geist'), local('Geist Variable'),
+       url('/assets/fonts/geist-latin.woff2') format('woff2');
 }
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 100 800;
   font-display: swap;
-  src: local('JetBrains Mono'), local('JetBrainsMono-Regular');
+  src: local('JetBrains Mono'), local('JetBrainsMono-Regular'),
+       url('/assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
 }
 
 /* ── Design Tokens ── */
@@ -87,26 +90,7 @@ a:hover { color: var(--cx-accent-muted); }
   max-width: 600px;
   margin-bottom: var(--cx-space-xl);
 }
-.cx-hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--cx-space-sm);
-}
-.cx-hero-tag {
-  font-family: var(--cx-font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--text-secondary, #5f5e5a);
-  padding: var(--cx-space-xs) var(--cx-space-md);
-  border: 1px solid var(--border-subtle, #d3d1c7);
-  border-radius: var(--cx-radius-full);
-  transition: all var(--cx-fast) var(--cx-ease);
-}
-.cx-hero-tag:hover {
-  color: var(--cx-accent);
-  border-color: var(--cx-accent-border);
-  background: var(--cx-accent-glow);
-}
+/* ── Hero 标签排已于 2026-07-31 删除（.cx-hero-tags/.cx-hero-tag 样式同步移除）── */
 
 /* ── 分隔线 ── */
 .cx-divider {
@@ -205,7 +189,8 @@ a:hover { color: var(--cx-accent-muted); }
 }
 @media (min-width: 1024px) {
   .cx-post-item {
-    grid-template-columns: auto 1fr;
+    /* ⭐ 固定 meta 列宽：auto 会随每篇分类标签宽度变化，导致各标题起始位参差不齐（2026-07-31）*/
+    grid-template-columns: 160px 1fr;
     grid-template-rows: auto auto;
     column-gap: var(--cx-space-3xl);
     align-items: baseline;
@@ -218,8 +203,7 @@ a:hover { color: var(--cx-accent-muted); }
 
 /* ── 暗色主题适配 ── */
 [data-bs-theme='dark'] .cx-hero-title     { color: oklch(92% 0 0); }
-[data-bs-theme='dark'] .cx-hero-desc,
-[data-bs-theme='dark'] .cx-hero-tag       { color: oklch(62% 0.01 210); }
+[data-bs-theme='dark'] .cx-hero-desc       { color: oklch(62% 0.01 210); }
 [data-bs-theme='dark'] .cx-section-label  { color: oklch(42% 0.01 210); }
 [data-bs-theme='dark'] .cx-post-title     { color: oklch(92% 0 0); }
 [data-bs-theme='dark'] .cx-post-excerpt   { color: oklch(62% 0.01 210); }
@@ -260,6 +244,22 @@ main#main-content {
 }
 #sidebar .nav-item:last-child {
   margin-bottom: 0;
+}
+
+/* ── ⭐ 删除右侧面板「最近更新 + 热门标签」（2026-07-31）──
+   注意：#panel-wrapper 在文章页还承载 TOC 目录（#toc-wrapper），
+   不能整个隐藏；.access 容器恰好只装这两个板块，精准切除 */
+#panel-wrapper .access {
+  display: none !important;
+}
+
+/* ── ⭐ 搜索栏往左挪一点（默认贴右边缘，加右边距使其左移）──
+   仅在桌面端生效（移动端搜索栏隐藏，由放大镜按钮代替）
+   想挪更多/更少，改 3rem 这一个数字即可 */
+@media (min-width: 992px) {
+  search#search {
+    margin-right: 3rem;
+  }
 }
 
 /* ── 选区与滚动条 ── */

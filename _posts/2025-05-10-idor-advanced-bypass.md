@@ -3,6 +3,7 @@ title: "IDOR 实战进阶：绕过加密 ID、JWT 与多步校验"
 date: 2025-05-10 12:00:00 +0800
 categories: [Web安全, 越权]
 tags: [越权, idor, 绕过, 实战]
+excerpt: "当 ID 被加密、UUID 化、GraphQL 化，「换个数字」就不够用了。越权测试面对 ID 加密、方法限制、JWT 角色控制等防御手段的进阶绕过思路。"
 ---
 
 ## 1."换数字"不够用

@@ -3,6 +3,7 @@ title: "命令执行 RCE：当用户输入溜进了系统命令行"
 date: 2026-05-01 12:00:00 +0800
 categories: [Web安全, RCE]
 tags: [rce, 命令执行, 远程代码执行, java]
+excerpt: "业务需要执行系统命令，命令一旦外部可控就成了 RCE。Runtime / ProcessBuilder 等危险函数的审计策略与修复方法。"
 ---
 
 ## <font style="color:rgb(0, 0, 0);">  0x01 漏洞成因</font>

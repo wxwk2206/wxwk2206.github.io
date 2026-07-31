@@ -3,6 +3,7 @@ title: "Java 反序列化利用链：手撕 ysoserial CommonsCollections1"
 date: 2026-02-02 12:00:00 +0800
 categories: [Java安全, 代码审计]
 tags: [反序列化, ysoserial, 利用链, java, cc1]
+excerpt: "从 TransformedMap 到 LazyMap 触发点，上手 ysoserial 原版 CommonsCollections1 利用链，补上 Java 反序列化基础的最后一块拼图。"
 ---
 
 ## 0x01 前言

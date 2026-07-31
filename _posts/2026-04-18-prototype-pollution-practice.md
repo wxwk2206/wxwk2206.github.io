@@ -3,6 +3,7 @@ title: "原型链污染实战：从 property 到 RCE 的前端纵深"
 date: 2026-04-18 12:00:00 +0800
 categories: [前端安全, JavaScript]
 tags: [原型链污染, javascript, nodejs, 前端安全]
+excerpt: "一个「看起来没问题」的 deepMerge 配置接口，如何被 __proto__ 污染一路打穿到 RCE。Node.js 原型链污染的前端纵深实战。"
 ---
 
 ## 1.漏洞场景：一个「看起来没问题」的接口

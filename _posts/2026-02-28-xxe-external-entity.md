@@ -3,6 +3,7 @@ title: "XXE 外部实体注入：用 XML 读服务器上的文件"
 date: 2026-02-28 12:00:00 +0800
 categories: [Web安全, XXE]
 tags: [xxe, xml, 外部实体, 任意文件读取]
+excerpt: "XML 解析器允许引用外部实体且不加限制，攻击者就能读任意文件、探测内网、发起 DoS。XXE 漏洞成因与审计关注点。"
 ---
 
 ## 0.XXE 介绍
