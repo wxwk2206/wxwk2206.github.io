@@ -65,8 +65,21 @@ excerpt: "网络传输时，数据被切分成一小块一小块的数据包。�
 ![pasted image 20260702203047](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203047.png)
 
 ## 1.请求行
-![pasted image 20260702203052](/assets/img/posts/2025-01-12-network-packets-basics/pasted-image-20260702203052.png)
+```
+#请求行 
+请求行由三个标记组成：请求方法、请求URL和HTTP版本，它们用空格分隔。 
+例如：GET /index.html HTTP/1.1
 
+HTTP：规范定义了8种可能的请求方法 
+GET：检索URL中标识资源的一个简单请求 
+HEAD：与GET方法相同，服务器只返回状态行和头标，并不返回请求文档 
+POST：服务器接受被写入客户端输出流中的数据的请求 
+PUT：服务器保存请求数据作为指定URL新内容的请求 
+DELETE：服务器删除URL中命令的资源的请求 
+OPTIONS：关于服务器支持的请求方法信息的请求 
+TRACE：web服务器反馈Http请求和其头标的请求 
+CONNECT ：已定义，但当前未实现的一个方法，预留做隧道处理
+```
 最常用：get和post
 
 ## 2.请求头
