@@ -213,17 +213,19 @@ a:hover { color: var(--cx-accent-muted); }
 [data-bs-theme='dark'] .cx-post-item      { border-color: oklch(24% 0.01 210); }
 [data-bs-theme='dark'] .cx-section-label::after { background: oklch(24% 0.01 210); }
 
-/* ── 侧边栏收窄到 235px ── */
-#sidebar,
-.sidebar,
-aside.d-flex.flex-column {
-  width: 235px !important;
-  min-width: 235px !important;
-  max-width: 235px !important;
-}
-#main-wrapper,
-main#main-content {
-  margin-left: 235px !important;
+/* ── 侧边栏收窄到 235px（仅桌面端生效，移动端交还给主题默认响应式布局）── */
+@media (min-width: 992px) {
+  #sidebar,
+  .sidebar,
+  aside.d-flex.flex-column {
+    width: 235px !important;
+    min-width: 235px !important;
+    max-width: 235px !important;
+  }
+  #main-wrapper,
+  main#main-content {
+    margin-left: 235px !important;
+  }
 }
 
 /* ── 隐藏侧边栏副标题（tagline 视觉删除，SEO 仍由 description 提供）── */
