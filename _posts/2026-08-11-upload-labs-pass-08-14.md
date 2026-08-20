@@ -1,9 +1,17 @@
 ---
-title: "文件上传靶场 Upload-Labs 通关笔记（Pass-08 ~ Pass-14）"
-date: 2026-08-16 12:00:00 +0800
-categories: [Web安全, 文件上传漏洞]
-tags: [upload-labs, 文件上传, 漏洞复现, webshell, 靶场]
-excerpt: "Upload-Labs 第八到十四关：末尾加点、::$DATA、点空格点、双写后缀、%00 截断与图片马+文件包含的绕过思路。"
+title: 文件上传靶场 Upload-Labs 通关笔记（Pass-08 ~ Pass-14）
+date: 2026-08-11 12:00:00 +0800
+categories:
+  - 靶场
+  - 文件上传漏洞
+  - 漏洞复现
+tags:
+  - upload-labs
+  - 文件上传
+  - 漏洞复现
+  - webshell
+  - 靶场
+excerpt: Upload-Labs 第八到十四关：末尾加点、::$DATA、点空格点、双写后缀、%00 截断与图片马+文件包含的绕过思路。
 ---
 
 ## Pass-08 后缀名末尾加点绕过

@@ -1,9 +1,17 @@
 ---
-title: "文件上传靶场 Upload-Labs 通关笔记（Pass-15 ~ Pass-21）"
-date: 2026-08-17 12:00:00 +0800
-categories: [Web安全, 文件上传漏洞]
-tags: [upload-labs, 文件上传, 漏洞复现, webshell, 靶场]
-excerpt: "Upload-Labs 第十五到二十一关：exif 图片校验、二次渲染、条件竞争、自定义上传类与数组后缀绕过的高阶打法。"
+title: 文件上传靶场 Upload-Labs 通关笔记（Pass-15 ~ Pass-21）
+date: 2026-08-12 12:00:00 +0800
+categories:
+  - 靶场
+  - 文件上传漏洞
+  - 漏洞复现
+tags:
+  - upload-labs
+  - 文件上传
+  - 漏洞复现
+  - webshell
+  - 靶场
+excerpt: Upload-Labs 第十五到二十一关：exif 图片校验、二次渲染、条件竞争、自定义上传类与数组后缀绕过的高阶打法。
 ---
 
 ## Pass-15 图片马 + 文件包含（同 Pass-14）

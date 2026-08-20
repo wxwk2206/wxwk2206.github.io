@@ -1,9 +1,17 @@
 ---
-title: "文件上传靶场 Upload-Labs 通关笔记（Pass-01 ~ Pass-07）"
-date: 2026-08-15 12:00:00 +0800
-categories: [Web安全, 文件上传漏洞]
-tags: [upload-labs, 文件上传, 漏洞复现, webshell, 靶场]
-excerpt: "Upload-Labs 前七关：前端 JS 校验、MIME 绕过、黑名单不全、.htaccess/.user.ini 解析、大小写与空格加点绕过的实战记录。"
+title: 文件上传靶场 Upload-Labs 通关笔记（Pass-01 ~ Pass-07）
+date: 2026-08-10 12:00:00 +0800
+categories:
+  - 靶场
+  - 文件上传漏洞
+  - 漏洞复现
+tags:
+  - upload-labs
+  - 文件上传
+  - 漏洞复现
+  - webshell
+  - 靶场
+excerpt: Upload-Labs 前七关：前端 JS 校验、MIME 绕过、黑名单不全、.htaccess/.user.ini 解析、大小写与空格加点绕过的实战记录。
 ---
 
 ## Pass-01 前端 JS 校验绕过
