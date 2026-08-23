@@ -1,8 +1,15 @@
 ---
-title: "Pikachu 靶场复现（一）：XSS / CSRF / SSRF"
-date: 2026-08-22 00:00:00 +0800
-categories: [漏洞复现, Web安全]
-tags: [Pikachu, XSS, CSRF, SSRF]
+title: Pikachu 靶场复现（一）：XSS / CSRF / SSRF
+date: 2026-08-21 00:00:00 +0800
+categories:
+  - 靶场
+  - Web安全
+  - 漏洞复现
+tags:
+  - Pikachu
+  - XSS
+  - CSRF
+  - SSRF
 ---
 
 本篇汇总 Pikachu 靶场中 XSS、CSRF、SSRF 三类漏洞的复现过程，按漏洞类型分节记录触发点与 payload。
