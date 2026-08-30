@@ -1,7 +1,7 @@
 ---
 title: "Nginx 配置错误导致的安全漏洞复现"
 date: 2026-08-27 14:00:00 +0800
-categories: [漏洞复现, Web安全]
+categories: [漏洞复现, Web安全, A级]
 tags: [Nginx, 配置错误, 解析漏洞]
 ---
 

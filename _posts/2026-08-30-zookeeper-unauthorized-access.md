@@ -1,7 +1,7 @@
 ---
 title: "ZooKeeper 未授权访问与配置泄露复现"
 date: 2026-08-30 10:00:00 +0800
-categories: [漏洞复现, Web安全]
+categories: [漏洞复现, Web安全, B级]
 tags: [ZooKeeper, 未授权访问, 配置泄露]
 ---
 

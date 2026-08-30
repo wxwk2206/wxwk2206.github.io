@@ -1,7 +1,7 @@
 ---
 title: "Fastjson 1.2.24 JNDI 注入复现：CVE-2017-18349"
 date: 2026-08-23 10:00:00 +0800
-categories: [漏洞复现, Web安全]
+categories: [漏洞复现, Web安全, S级]
 tags: [Fastjson, JNDI, 反序列化, RCE, CVE-2017-18349]
 ---
 
